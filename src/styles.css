@@ -5,11 +5,95 @@ body {
   margin: 0;
   /* overflow: auto; */
   font-family: Poppins, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 a {
   text-decoration: none;
 }
+
+/* For WebKit browsers (e.g., Safari, Chrome) */
+::-webkit-scrollbar {
+  width: 0.5rem; /* Adjust width as needed */
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Adjust background color */
+}
+
+::-webkit-scrollbar-thumb {
+  /* background-color: #888; */
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 5px; /* Adjust border radius */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, .4); /* Adjust thumb color on hover */
+}
+
+
+.svg-10 svg {width: 10px; height: 10px;}
+.svg-12 svg {width: 12px; height: 12px;}
+.svg-14 svg {width: 14px; height: 14px;}
+.svg-16 svg {width: 16px; height: 16px;}
+.svg-18 svg {width: 18px; height: 18px;}
+.svg-20 svg {width: 20px; height: 20px;}
+.svg-22 svg {width: 22px; height: 22px;}
+.svg-24 svg {width: 24px; height: 24px;}
+.svg-26 svg {width: 26px; height: 26px;}
+
+.card-svg-box {
+  padding: 2px 5px;
+  border-radius: 30%;
+  cursor: pointer;
+}
+
+.card-svg-box:hover {
+  background-color: rgba(0, 0, 0, .1);
+}
+
+.card-svg-box:active {
+  background-color: rgba(0, 0, 0, .05);
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.svg path {
+  stroke: rgba(0, 0, 0, .4);
+}
+
+.svg-hoverd path {
+  stroke: rgba(0, 0, 0, .6);
+  cursor: pointer;
+}
+
+.disabled-svg path {
+  stroke: rgba(0, 0, 0, .1);
+}
+
+.input-note-title,
+.input-note-header {
+  width: 100%;
+}
+
+.input-note-title input { 
+  width: 100%; 
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.input-note-header input { 
+  width: 100%; 
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.display-none {
+  display: none;
+}
+
 .checkbox {
   margin-bottom: 5px;
   padding-left: 20px;
@@ -267,7 +351,7 @@ a {
   color: rgba(0, 0, 0, .5);
   margin-top: 40px;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .text-block-4 {
@@ -277,12 +361,12 @@ a {
 }
 
 .note-header {
+  display: flex;
+  align-items: center;
   grid-column-gap: 20px;
   grid-row-gap: 20px;
-  align-items: flex-end;
   margin-top: 50px;
   font-size: 24px;
-  display: flex;
 }
 
 .button {
@@ -313,6 +397,7 @@ a {
   margin-top: 19px;
   padding: 15px 20px;
   display: flex;
+  box-sizing: border-box;
 }
 
 .note-item:hover {
@@ -325,9 +410,15 @@ a {
 }
 
 .edit-delete {
-  grid-column-gap: 20px;
-  grid-row-gap: 20px;
+  grid-column-gap: .6rem;
   display: flex;
+}
+
+.edit-delete-wrapper {
+  grid-column-gap: .6rem;
+  display: flex;
+  justify-content: flex-end;
+  padding-left: 15px;
 }
 
 .content {
@@ -335,8 +426,8 @@ a {
 }
 
 .text-block-5 {
-  color: rgba(0, 0, 0, .5);
-  padding-right: 20px;
+  color: rgba(0, 0, 0, .7);
+  padding-right: 0.8rem;
   font-size: 16px;
   font-weight: 500;
 }
@@ -364,10 +455,9 @@ a {
 
 .form-block {
   width: 100%;
-  background-color: #fff;
-  border-top: 1px solid rgba(0, 0, 0, .2);
+  background: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
   margin-bottom: 0;
-  padding: 0 10rem 0 35rem;
+  padding: 1rem 6rem 0 28rem;
   display: block;
   position: fixed;
   z-index: 1;
@@ -376,12 +466,22 @@ a {
   left: 0%;
   right: 0%;
   box-sizing: border-box;
+  animation: gradientFade 0s;
 }
 
-.form {
-  grid-column-gap: 10px;
-  grid-row-gap: 10px;
-  display: flex;
+@keyframes gradientFade {
+  0% {
+    background-position: 0% 100%;
+    background-color: rgba(255, 255, 255, 1);
+  }
+  /* 30% {
+    background-position: 0% 100%;
+    background-color: rgba(255, 255, 255, 1);
+  } */
+  100% {
+    background-position: 0% 100%;
+    background-color: rgba(255, 255, 255, 0);
+  }
 }
 
 .add.create-note-btn {
@@ -455,7 +555,7 @@ a {
 
 .note-content {
   margin-bottom: 0;
-  padding: 0rem 5rem 5rem 27rem;
+  padding: 0rem 5rem 10rem 27rem;
   box-sizing: border-box;
 }
 
@@ -465,8 +565,8 @@ a {
 }
 
 .main-content {
-  height: 100vh;
   position: relative;
+  padding-bottom: 5rem;
 }
 
 .section {
@@ -587,13 +687,6 @@ a {
   display: none;
 }
 
-.edit-delete-wrapper {
-  grid-column-gap: 12px;
-  grid-row-gap: 12px;
-  justify-content: flex-end;
-  padding-left: 15px;
-  display: flex;
-}
 
 .title {
   width: 100%;
@@ -678,14 +771,9 @@ a {
   }
 
   .form-block {
-    padding-bottom: 10px;
-    /* padding-left: 225px;
-    padding-right: 208px; */
-  }
-
-  .form {
-    padding-left: 0;
-    padding-right: 0;
+    padding-left: 36rem;
+    padding-right: 11rem;
+    box-sizing: border-box;
   }
 
   .text-field {
@@ -700,12 +788,8 @@ a {
 
   .note-content {
     margin-bottom: 0;
-    padding: 0rem 10rem 5rem 35rem;
+    padding: 0rem 10rem 10rem 35rem;
     box-sizing: border-box;
-  }
-
-  .main-content {
-    height: 100vh;
   }
 
   .section-2 {
@@ -852,14 +936,9 @@ a {
   }
 
   .form-block {
-    padding-left: 0;
-    padding-right: 0;
+    padding-left: 3rem;
+    padding-right: 3rem;
     position: fixed;
-  }
-
-  .form {
-    padding-left: 40px;
-    padding-right: 58px;
   }
 
   .add-pro-todo.create-note-btn {
@@ -883,7 +962,7 @@ a {
   }
 
   .note-content {
-    padding: 0rem 2rem 6rem 2rem;
+    padding: 0rem 2rem 10rem 2rem;
     box-sizing: border-box;
   }
 
@@ -937,6 +1016,11 @@ a {
 
   .header {
     height: 10vh;
+  }
+
+  .main-content {
+    padding-top: 2rem;
+    padding-bottom: 5rem;
   }
 
   .main-for-form {
@@ -1001,11 +1085,6 @@ a {
     font-weight: 400;
   }
 
-  .form {
-    padding-left: 20px;
-    padding-right: 38px;
-  }
-
   .side-panel {
     width: 300px;
   }
@@ -1065,12 +1144,8 @@ a {
   }
 
   .form-block {
-    padding-bottom: 10px;
-  }
-
-  .form {
-    padding-left: 10px;
-    padding-right: 28px;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
   .add.create-note-btn {
@@ -1094,16 +1169,8 @@ a {
   }
 
   .note-content {
-    padding: 0rem 0.7rem 6rem 0.7rem;
+    padding: 0rem 0.7rem 12rem 0.7rem;
     box-sizing: border-box;
-  }
-
-  .top-nav-bar {
-    padding: 10px;
-  }
-
-  .text-block-6 {
-    font-size: 16px;
   }
 
   .image-5, .image-6 {
@@ -1112,6 +1179,7 @@ a {
   }
 
   .main-content {
+
     margin-top: 0;
   }
 
