@@ -19,34 +19,60 @@
     <!-- Note - Main Content -->
     <div class="main-content">
       <div class="note-content">
-        <div class="note-title">
-          <h1 class="heading">Personal Life</h1><img src="assets/pen.svg" loading="lazy" width="24" height="24" alt="edit icon" class="edit-pen black">
+
+        <!-- Note Title -->
+        <div class="note-title" (click)="showTitleForm()" *ngIf="!editTitleMode">
+          <h1 class="heading">Personal Life</h1>
+          <app-display-svg [svgName]="'pen'" ></app-display-svg>
         </div>
+        <div class="note-title" *ngIf="editTitleMode">
+          <app-quick-input-field 
+            [title]="'Personal Life'" 
+            styles="input-note-title"
+            [save]="updateTitle" 
+            (closeInputField)="showTitleForm()">
+          </app-quick-input-field>
+        </div>
+          
         <div class="about-note">
           <div class="text-block-3">This NOTE is kinda like a diary because it does carries data about my personal life and the things that I go through on a daily basis and how I’ve been able to overcome them and basically what happened ....</div>
         </div>
-        <div class="note-header">
+
+        <!-- Note Header -->
+        <div class="note-header" (click)="showNoteHeaderForm()" *ngIf="!editNoteHeaderMode">
           <div class="div-block-3">
-            <div class="text-block-4">Note</div><img src="assets/pen.svg" loading="lazy" width="24" height="24" alt="edit icon" class="edit-pen black">
+            <div class="text-block-4">Note</div>
+            <app-display-svg [svgName]="'pen'" ></app-display-svg>
           </div>
           <div class="pill-note-count">
             <div class="text-block-10">32</div>
           </div>
         </div>
+
+        <div class="note-header" *ngIf="editNoteHeaderMode">
+          <app-quick-input-field 
+            [title]="'Note'" 
+            styles="input-note-header"
+            [save]="updateNoteHeader" 
+            (closeInputField)="showNoteHeaderForm()">
+          </app-quick-input-field>
+        </div>
         
         <!-- List of Notes -->
         <div class="notes-list-wrapper">
-          <div class="note-item" *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]" >
-            <div class="content">
-              <div class="text-block-5">I would like to go over to marry amakas shop and get me some good grocery’s. I am talking milo, milk, sugar, cornflakes, golden morn, coca oat, bonvita, cop life and what not. Sometimes she has zobo and kunu, if she does amma get those too 😁</div>
-            </div>
-            <div class="edit-delete"><img src="assets/pen.svg" loading="lazy" alt="edit icon" class="image-3"><img src="assets/trash-can.svg" loading="lazy" alt="delete icon" class="waste-bin"></div>
+          <div *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]">
+            <!-- Note Card -->
+            <app-note-card></app-note-card>
           </div>
         </div>
 
-        <div class="form-block w-form">
-          <form id="email-form" name="email-form" data-name="Email Form" method="get" class="form"><input type="text" class="text-field w-input" autofocus="true" maxlength="256" name="note" data-name="note" placeholder="Type something ..." id="note" required=""><input type="submit" value="Add" data-wait="Please wait..." id="add" class="add create-note-btn w-button"><input type="submit" value="Add Pro Note" data-wait="Please wait..." class="add-pro-todo create-note-btn w-button"></form>
-        </div>
+      </div>
+      <div class="form-block w-form">
+
+        <form id="email-form" name="email-form" #form class="form">
+          <app-text-field (onSubmit)="addNewNote($event, form)"></app-text-field>
+        </form>
+        
       </div>
     </div>
   </div>
