@@ -8,6 +8,9 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+div { font-family: Poppins, sans-serif; }
+h1, h2, h3, h4, h5, h6, p { font-family: Poppins, sans-serif; }
+
 a {
   text-decoration: none;
 }
@@ -43,7 +46,7 @@ a {
 .svg-26 svg {width: 26px; height: 26px;}
 
 .card-svg-box {
-  padding: 2px 5px;
+  padding: .5px 5px;
   border-radius: 30%;
   cursor: pointer;
 }
@@ -80,7 +83,7 @@ a {
 
 .input-note-title input { 
   width: 100%; 
-  font-size: 40px;
+  font-size: 50px;
   font-weight: 600;
 }
 
@@ -172,11 +175,31 @@ a {
   display: flex;
 }
 
-.image {
+.avatar-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 50px;
   height: 50px;
   border-radius: 10%;
-  font-weight: 400;
+  background-color: #1679f7;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.avatar-container:hover {
+  background-color: #006eff;
+}
+
+.avatar-container img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+.avatar-container span {
+  font-weight: 600;
+  color: #fff;
 }
 
 .text-block {
@@ -205,18 +228,20 @@ a {
   height: 20px;
   color: rgba(0, 0, 0, .8);
   text-align: center;
-  -webkit-text-fill-color: inherit;
-  background-color: rgba(0, 0, 0, 0);
-  background-clip: border-box;
-  border: 1px solid rgba(0, 0, 0, .2);
   border-radius: 10px;
   align-items: center;
-  padding-top: 22px;
-  padding-bottom: 22px;
-  padding-left: 15px;
-  font-size: 16px;
-  font-weight: 700;
+  padding: .9rem .8rem;
+  font-size: 14px;
+  font-weight: 500;
   display: flex;
+}
+
+.icon-button:hover {
+  background-color: #e1e1e1;
+}
+
+.icon-button:active {
+  background-color: rgba(0, 0, 0, .1);
 }
 
 .icon-button.sidebar-btn {
@@ -234,10 +259,6 @@ a {
   justify-content: space-between;
   margin-top: 15px;
   padding-right: 5px;
-}
-
-.icon-button.t-mar-20:hover {
-  background-color: #e1e1e1;
 }
 
 .icon-button.t-mar-20.app-border {
@@ -274,7 +295,7 @@ a {
   white-space: nowrap;
   cursor: pointer;
   padding-left: 10px;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   overflow: hidden;
 }
@@ -295,7 +316,7 @@ a {
   justify-content: flex-end;
   padding: 15px;
   display: flex;
-  position: static;
+  position: absolute;
   top: auto;
   bottom: 0%;
   left: 0%;
@@ -307,9 +328,11 @@ a {
   text-decoration: none;
 }
 
-.scroll-wrapper {
+.sp-scroll-wrapper {
   height: 74vh;
   flex-direction: column;
+  padding: 0 0.5rem 1rem;
+  box-sizing: border-box;
   margin-top: 10px;
   display: block;
   overflow: auto;
@@ -546,11 +569,18 @@ a {
 }
 
 .side-panel {
-  width: 20rem;
+  width: 18rem;
   height: 100vh;
   background-color: #f1f1f1;
   position: fixed;
   z-index: 5;
+  box-sizing: border-box;
+}
+
+.sp-user-card {
+  padding: 0.5rem .7rem 0;
+  display: flex;
+  align-items: center;
 }
 
 .note-content {
@@ -573,17 +603,6 @@ a {
   height: 100vh;
 }
 
-.side-bar-mobile {
-  z-index: 1;
-  width: 200px;
-  background-color: #fff;
-  display: none;
-  position: fixed;
-  top: 0%;
-  bottom: 0%;
-  left: 0%;
-  right: auto;
-}
 
 .section-2 {
   height: 100vh;
@@ -696,18 +715,14 @@ a {
 
 .add-new-note {
   width: auto;
-  height: 20px;
   color: rgba(0, 0, 0, .8);
   text-align: center;
-  -webkit-text-fill-color: inherit;
   background-color: rgba(0, 0, 0, 0);
-  background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, .2);
   border-radius: 10px;
   align-items: center;
-  padding-top: 22px;
-  padding-bottom: 22px;
-  padding-left: 15px;
+  padding: 0.7rem 0.8rem;
+  margin: .5rem .7rem 0;
   font-size: 16px;
   font-weight: 700;
   display: flex;
@@ -889,18 +904,13 @@ a {
     background-color: rgba(0, 0, 0, 0);
   }
 
-  .icon-button.t-mar-20.app-border {
-    display: flex;
-  }
-
   .text-block-2 {
     flex: 0 auto;
     overflow: hidden;
   }
 
   .sidebar-fixed-bottom {
-    height: auto;
-    background-color: rgba(0, 0, 0, 0);
+    background-color: #f1f1f1;
     position: absolute;
     top: auto;
     bottom: 0%;
@@ -908,11 +918,10 @@ a {
     right: 0%;
   }
 
-  .scroll-wrapper {
-    height: 74%;
-    padding-bottom: 20px;
+  .sp-scroll-wrapper {
+    padding-bottom: 1.2rem;
     display: block;
-    overflow: auto;
+    overflow-y: auto;
   }
 
   .edit-pen {
@@ -941,10 +950,6 @@ a {
     position: fixed;
   }
 
-  .add-pro-todo.create-note-btn {
-    display: none;
-  }
-
   .main {
     display: block;
   }
@@ -955,7 +960,6 @@ a {
     height: 100%;
     border-radius: 0 20px 20px 0;
     padding-top: 0;
-    display: none;
     position: fixed;
     top: 0;
     overflow: hidden;
@@ -992,13 +996,6 @@ a {
     font-size: 25px;
   }
 
-  .side-bar-mobile {
-    width: 250px;
-    padding: 30px 10px 0 0;
-    display: none;
-    overflow: visible;
-  }
-
   .signup-google {
     border: 1px solid rgba(0, 0, 0, .2);
     border-radius: 20px;
@@ -1032,8 +1029,12 @@ a {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, .5);
-    display: none;
+    display: block;
     position: fixed;
+  }
+  
+  .display-none-mobile {
+    display: none;
   }
 
   .overlay-cancel {
@@ -1055,12 +1056,8 @@ a {
 }
 
 @media screen and (max-width: 767px) {
-  .sidebar-fixed-bottom {
-    height: 7%;
-    background-color: rgba(0, 0, 0, 0);
-  }
 
-  .scroll-wrapper {
+  .sp-scroll-wrapper {
     padding-bottom: 20px;
   }
 
@@ -1109,11 +1106,6 @@ a {
 }
 
 @media screen and (max-width: 479px) {
-  .icon-button.t-mar-20 {
-    margin-top: 15px;
-    padding: 20px 5px 20px 10px;
-  }
-
   .heading {
     font-size: 30px;
   }
@@ -1152,19 +1144,12 @@ a {
     height: 40px;
   }
 
-  .add-pro-todo.create-note-btn {
-    height: 40px;
-    display: none;
-  }
-
   .text-field {
     height: 40px;
   }
 
   .side-panel {
-    z-index: 2;
-    width: 280px;
-    position: fixed;
+    width: 80%;
     top: 0;
   }
 
@@ -1188,11 +1173,6 @@ a {
     position: static;
   }
 
-  .side-bar-mobile {
-    display: none;
-    position: fixed;
-  }
-
   .section-2 {
     display: block;
   }
@@ -1212,11 +1192,6 @@ a {
 
   .background-overlay {
     top: 0;
-  }
-
-  .add-new-note.t-mar-20 {
-    margin-top: 15px;
-    padding: 20px 5px;
   }
 
   .add-new-note.t-mar-20.app-border {
