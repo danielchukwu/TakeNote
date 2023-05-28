@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { NoteCardComponent } from './components/note-card/note-card.component';
 import { DisplaySvgComponent } from './components/display-svg/display-svg.component';
 import { QuickInputFieldComponent } from './components/quick-input-field/quick-input-field.component';
+import { SidebarNoteCardComponent } from './components/sidebar-note-card/sidebar-note-card.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { QuickInputFieldComponent } from './components/quick-input-field/quick-i
     NoteCardComponent,
     DisplaySvgComponent,
     QuickInputFieldComponent,
+    SidebarNoteCardComponent,
   ],
   imports: [
     CommonModule,
