@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
+  
+  updateAvatar() {
+    alert('Update users avatar! 🦜');
+  }
 
+  createNoteBook() {
+    alert('Create new notebook! 🦜');
+  }
 }
