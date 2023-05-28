@@ -1,3 +1,10 @@
 <form [class]="styles" #form>
-  <input type="text" name="title" id="" [value]="title" (keydown.enter)="save(inputField); close();" autofocus #inputField>
+  <input 
+    type="text" 
+    name="title" 
+    [value]="title" 
+    (keydown.enter)="save(inputField); close();"  
+    (blur)="save(inputField); close();"  
+    autofocus 
+    #inputField>
 </form>
