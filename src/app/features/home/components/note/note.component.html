@@ -1,0 +1,58 @@
+<div class="main-content">
+  <div class="note-content">
+
+    <!-- Note Title -->
+    <div class="note-title" (click)="showTitleForm()" *ngIf="!editTitleMode">
+      <h1 class="heading">Personal Life</h1>
+      <app-display-svg [svgName]="'pen'" ></app-display-svg>
+    </div>
+    <div class="note-title" *ngIf="editTitleMode">
+      <app-quick-input-field 
+        [title]="'Personal Life'" 
+        styles="input-note-title"
+        [save]="updateTitle" 
+        (closeInputField)="showTitleForm()">
+      </app-quick-input-field>
+    </div>
+      
+    <div class="about-note">
+      <div class="text-block-3">This NOTE is kinda like a diary because it does carries data about my personal life and the things that I go through on a daily basis and how I’ve been able to overcome them and basically what happened ....</div>
+    </div>
+
+    <!-- Note Header -->
+    <div class="note-header" (click)="showNoteHeaderForm()" *ngIf="!editNoteHeaderMode">
+      <div class="div-block-3">
+        <div class="text-block-4">Note</div>
+        <app-display-svg [svgName]="'pen'" ></app-display-svg>
+      </div>
+      <div class="pill-note-count">
+        <div class="text-block-10">32</div>
+      </div>
+    </div>
+
+    <div class="note-header" *ngIf="editNoteHeaderMode">
+      <app-quick-input-field 
+        [title]="'Note'" 
+        styles="input-note-header"
+        [save]="updateNoteHeader" 
+        (closeInputField)="showNoteHeaderForm()">
+      </app-quick-input-field>
+    </div>
+    
+    <!-- List of Notes -->
+    <div class="notes-list-wrapper">
+      <div *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]">
+        <!-- Note Card -->
+        <app-note-card></app-note-card>
+      </div>
+    </div>
+
+  </div>
+  <div class="form-block w-form">
+
+    <form id="email-form" name="email-form" #form class="form">
+      <app-text-field (onSubmit)="addNewNote($event, form)"></app-text-field>
+    </form>
+    
+  </div>
+</div>
