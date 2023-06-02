@@ -33,8 +33,9 @@
           <div class="line"></div>
         </div>
         <div class="w-form">
-          <!-- <form id="email-form-2" name="email-form-2"> -->
-            <form id="email-form-2" name="email-form-2" #form="ngForm" (ngSubmit)="authenticate(form.value)">
+
+          <!-- FORM -->
+          <form id="email-form-2" name="email-form-2" #form="ngForm" (ngSubmit)="authenticate(form.value)">
             
             <!-- Name Field, Email Field, Password Field -->
             <div *ngFor="let field of fieldsList">
@@ -75,10 +76,15 @@
             </div>
 
             <!-- Submit Button -->
+
+            <!-- Login -->
             <input type="submit" value="Login" *ngIf="isLogin; else signUpButton" [disabled]="form.invalid" [ngClass]="{'signin-login-btn': true, 'disabled-button': form.invalid}"/>
+
+            <!-- Signup -->
             <ng-template #signUpButton>
               <input type="submit" value="Sign up" [disabled]="form.invalid" [ngClass]="{'signin-login-btn': true, 'disabled-button': form.invalid}"/>
             </ng-template>
+            
           </form>
         </div>
 
