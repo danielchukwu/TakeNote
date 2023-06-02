@@ -1,0 +1,11 @@
+mat-form-field {
+  width: 100%;
+}
+
+.mat-icon {
+  padding-right: 5rem;
+}
+
+.submit-svg-container {
+  padding-right: .5rem;
+}
