@@ -5,9 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
-import { NotesModule } from './features/notes/notes.module';
 import { AuthModule } from './features/auth/auth.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomeModule } from './features/home/home.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    NotesModule,
+    HomeModule,
     AuthModule,
     SharedModule,
     BrowserAnimationsModule,
