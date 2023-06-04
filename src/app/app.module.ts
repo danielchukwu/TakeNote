@@ -8,10 +8,15 @@ import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './features/auth/auth.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeModule } from './features/home/home.module';
+import { AuthService } from './core/auth/auth.service';
+import { RouterModule } from '@angular/router';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './core/interceptors/auth.interceptor';
+import { UserService } from './core/auth/user.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -21,8 +26,13 @@ import { HomeModule } from './features/home/home.module';
     AuthModule,
     SharedModule,
     BrowserAnimationsModule,
+    RouterModule,
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    UserService,
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
