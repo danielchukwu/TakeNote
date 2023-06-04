@@ -3,7 +3,8 @@
 
     <!-- Note Title -->
     <div class="note-title" (click)="showTitleForm()" *ngIf="!editTitleMode">
-      <h1 class="heading">Personal Life</h1>
+      <!-- <h1 class="heading">Personal Life</h1> -->
+      <h1 class="heading" *ngIf="notebook$ | async as notebook">{{ notebook.title }}</h1>
       <app-display-svg [svgName]="'pen'" ></app-display-svg>
     </div>
     <div class="note-title" *ngIf="editTitleMode">
@@ -16,7 +17,7 @@
     </div>
       
     <div class="about-note">
-      <div class="text-block-3">This NOTE is kinda like a diary because it does carries data about my personal life and the things that I go through on a daily basis and how I’ve been able to overcome them and basically what happened ....</div>
+      <div class="text-block-3" *ngIf="notebook$ | async as notebook">{{ notebook.description }}</div>
     </div>
 
     <!-- Note Header -->
@@ -41,9 +42,9 @@
     
     <!-- List of Notes -->
     <div class="notes-list-wrapper">
-      <div *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]">
+      <div *ngFor="let note of notes$ | async">
         <!-- Note Card -->
-        <app-note-card></app-note-card>
+        <app-note-card [note]="note"></app-note-card>
       </div>
     </div>
 

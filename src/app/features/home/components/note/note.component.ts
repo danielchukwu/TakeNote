@@ -1,11 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
+import { Note } from 'src/app/shared/models/note';
+import { Notebook } from 'src/app/shared/models/notebook';
+import { NotebookService } from 'src/app/shared/services/notebook.service';
 
 @Component({
   selector: 'app-note',
   templateUrl: './note.component.html',
   styleUrls: ['./note.component.css']
 })
-export class NoteComponent {
+export class NoteComponent implements OnInit, OnDestroy {
+  notes$: Observable<Note[]> = this.notebookService.getNotes(this.route.snapshot.params['id']);
+  notebook$: Observable<Notebook> = this.notebookService.getNotebook(this.route.snapshot.params['id']);
+  subscription$: Subscription | undefined;
+
+  constructor(private notebookService: NotebookService, private route: ActivatedRoute, private router: Router) {}
+  ngOnInit(): void {
+    // This runs whenever the url changes. And when it does we want to fetch data for the 
+    this.subscription$ = this.route.paramMap.subscribe((d) => {
+      this.notes$ = this.notebookService.getNotes(this.route.snapshot.params['id']);
+      this.notebook$ = this.notebookService.getNotebook(this.route.snapshot.params['id']);
+    })
+  }
+  ngOnDestroy() {
+    this.subscription$?.unsubscribe();
+  }
+
+  // CRUD
 
   // Note Title - This shows the edit form or not and shows the title or not
   editTitleMode = false;

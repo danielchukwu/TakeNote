@@ -6,8 +6,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./note-card.component.css']
 })
 export class NoteCardComponent {
-  @Input()
-  note: any;
+  @Input() note: any;
   
   delete() {
     console.log('Delete Card: ', this.note);
