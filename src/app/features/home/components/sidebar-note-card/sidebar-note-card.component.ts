@@ -26,7 +26,6 @@ export class SidebarNoteCardComponent {
   
   delete() {
     alert('Delete Note Group: ');
-
   }
   
   update() {
