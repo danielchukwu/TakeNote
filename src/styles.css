@@ -236,6 +236,19 @@ a {
   display: flex;
 }
 
+.icon-button-selected {
+  width: auto;
+  height: 20px;
+  background-color: #d1d1d1;
+  text-align: center;
+  border-radius: 10px;
+  align-items: center;
+  padding: .9rem .8rem;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+}
+
 .icon-button:hover {
   background-color: #e1e1e1;
 }
@@ -253,21 +266,8 @@ a {
   display: flex;
 }
 
-.icon-button.t-mar-20 {
-  cursor: pointer;
-  border-style: none;
-  justify-content: space-between;
-  margin-top: 15px;
-  padding-right: 5px;
-}
-
-.icon-button.t-mar-20.app-border {
-  border-style: solid;
-  margin-top: 20px;
-}
-
-.icon-button.t-mar-20.light-grey {
-  background-color: #e1e1e1;
+.t-mar-10 {
+  margin-top: 10px;
 }
 
 .div-block-2 {
