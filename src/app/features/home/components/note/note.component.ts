@@ -51,7 +51,6 @@ export class NoteComponent implements OnInit, OnDestroy {
   updateTitle(): Function {
     const service = this.notebookService;
     const id = this.route.snapshot.params['id']
-    // const notebook$ = this.notebook$;
 
     const update = (field: HTMLInputElement) => {
       return service.updateNotebook(id, {title: field.value}).subscribe((notebook: Notebook) => {
@@ -63,8 +62,33 @@ export class NoteComponent implements OnInit, OnDestroy {
         });
         // Update
         this.notebook$ = of(notebook);
-        console.log(notebook);
         this.dataSharingService.setSidebarNotebook(notebook);
+      });
+    }
+    return update;
+  }
+
+  // Description
+  
+  // - show update title input field or not
+  editDescriptionMode = false;
+  showDescriptionForm() { this.editDescriptionMode = !this.editDescriptionMode; }
+
+  // - update : higher-order functions
+  updateDescription(): Function {
+    const service = this.notebookService;
+    const id = this.route.snapshot.params['id']
+
+    const update = (field: HTMLInputElement) => {
+      return service.updateNotebook(id, {description: field.value}).subscribe((notebook: Notebook) => {
+        // Show successful alert
+        this.dataSharingService.setAlert({
+          title: 'Description was updated 💪',
+          isSuccess: true,
+          showAlert: true
+        });
+        // Update
+        this.notebook$ = of(notebook);
       });
     }
     return update;
