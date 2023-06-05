@@ -1,6 +1,7 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Notebook } from 'src/app/shared/models/notebook';
 
 
 @Component({
@@ -9,8 +10,9 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./sidebar-note-card.component.css']
 })
 export class SidebarNoteCardComponent {
-  @Input() notebook: any;
-  isSelected = false;
+  @Input() notebook: Notebook | undefined;
+  @Input() isSelected = false;
+  @Output() selectCard = new EventEmitter();
   showEditAndDeleteIconMode = false;
   subscription: Subscription | undefined;
   
@@ -21,7 +23,10 @@ export class SidebarNoteCardComponent {
   }
 
   openNotebook(){
-    this.router.navigate(['n', this.notebook.id], { state: {notebook: this.notebook}});
+    // output event
+    this.selectCard.emit(this.notebook?.id);
+    // navigate to new notebook rout
+    this.router.navigate(['n', this.notebook?.id]);
   }
   
   delete() {

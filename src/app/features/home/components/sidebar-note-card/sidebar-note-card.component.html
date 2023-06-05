@@ -1,8 +1,7 @@
 <div [ngClass]="{'icon-button': !isSelected, 'icon-button-selected': isSelected, 't-mar-10': true, 'bg-light-grey': true}" (mouseenter)="showEditAndDeleteIcon()" (mouseleave)="showEditAndDeleteIcon()" (click)="openNotebook()">
   <div class="title">
     <img src="assets/list-todo.svg" loading="lazy" width="20" height="20" alt="note icon" class="black-80 btn-svg-20">
-    <div class="text-block-2">{{notebook.title}}</div>
-    <!-- {{notebook.isSelected}} -->
+    <div class="text-block-2" *ngIf="notebook">{{notebook.title}}</div>
   </div>
   
   <!-- Edit and Delete Icon -->

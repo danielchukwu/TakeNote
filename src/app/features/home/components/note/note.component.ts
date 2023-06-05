@@ -1,8 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { Note } from 'src/app/shared/models/note';
 import { Notebook } from 'src/app/shared/models/notebook';
+import { DataSharingService } from 'src/app/shared/services/data-sharing.service';
 import { NotebookService } from 'src/app/shared/services/notebook.service';
 
 @Component({
@@ -15,12 +16,21 @@ export class NoteComponent implements OnInit, OnDestroy {
   notebook$: Observable<Notebook> = this.notebookService.getNotebook(this.route.snapshot.params['id']);
   subscription$: Subscription | undefined;
 
-  constructor(private notebookService: NotebookService, private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private notebookService: NotebookService, 
+    private route: ActivatedRoute, 
+    private router: Router,
+    private dataSharingService: DataSharingService
+  ) {}
   ngOnInit(): void {
     // This runs whenever the url changes. And when it does we want to fetch data for the 
-    this.subscription$ = this.route.paramMap.subscribe((d) => {
-      this.notes$ = this.notebookService.getNotes(this.route.snapshot.params['id']);
-      this.notebook$ = this.notebookService.getNotebook(this.route.snapshot.params['id']);
+    this.subscription$ = this.route.paramMap.subscribe((paramMap) => {
+      const id = this.route.snapshot.params['id'];
+      
+      this.notes$ = this.notebookService.getNotes(id);
+      this.notebook$ = this.notebookService.getNotebook(id);
+      // Update Selected Sidebar Notebook
+      this.dataSharingService.setSelectedSidebarNotebookId(id);
     })
   }
   ngOnDestroy() {

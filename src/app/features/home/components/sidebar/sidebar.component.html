@@ -18,7 +18,7 @@
     <div class="sp-scroll-wrapper">
       
       <div *ngFor="let notebook of notebooks | async">
-        <app-sidebar-note-card [notebook]="notebook"></app-sidebar-note-card>
+        <app-sidebar-note-card [notebook]="notebook" [isSelected]='selectedCardId === notebook.id'></app-sidebar-note-card>
       </div>
 
     </div>

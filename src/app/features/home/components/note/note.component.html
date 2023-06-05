@@ -1,10 +1,10 @@
-<div class="main-content">
+<div class="main-content" *ngIf="notebook$ | async as notebook">
   <div class="note-content">
 
     <!-- Note Title -->
     <div class="note-title" (click)="showTitleForm()" *ngIf="!editTitleMode">
       <!-- <h1 class="heading">Personal Life</h1> -->
-      <h1 class="heading" *ngIf="notebook$ | async as notebook">{{ notebook.title }}</h1>
+      <h1 class="heading">{{ notebook.title }}</h1>
       <app-display-svg [svgName]="'pen'" ></app-display-svg>
     </div>
     <div class="note-title" *ngIf="editTitleMode">
@@ -17,7 +17,7 @@
     </div>
       
     <div class="about-note">
-      <div class="text-block-3" *ngIf="notebook$ | async as notebook">{{ notebook.description }}</div>
+      <div class="text-block-3">{{ notebook.description }}</div>
     </div>
 
     <!-- Note Header -->
