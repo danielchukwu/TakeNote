@@ -1,19 +1,42 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Notebook } from '../models/notebook';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DataSharingService {
   private selectedSidebarNotebookId = new BehaviorSubject<String>('');
+  private alertSubject = new BehaviorSubject<{
+    title: String;
+    isSuccess: boolean;
+    showAlert: boolean;
+  }>({ title: '', isSuccess: false, showAlert: false });
+  private sidebarNotebookTitleSubject = new BehaviorSubject<Notebook | undefined>(undefined);
 
-  constructor() { }
+  constructor() {}
 
   // SETTER AND GETTER - reads and updates the selected sidebar notebook id
-  getSelectedSidebarNotebookId(){
+  getSelectedSidebarNotebookId() {
     return this.selectedSidebarNotebookId.asObservable();
   }
-  setSelectedSidebarNotebookId(id: String){
+  setSelectedSidebarNotebookId(id: String) {
     this.selectedSidebarNotebookId.next(id);
+  }
+
+  // SETTER AND GETTER - displays the alert card pop up notification
+  getAlert() {
+    return this.alertSubject.asObservable();
+  }
+  setAlert(data: { title: String; isSuccess: boolean, showAlert: boolean}) {
+    this.alertSubject.next(data);
+  }
+  
+  // SETTER AND GETTER - allows updating of sidebar notification title
+  getSidebarNotebookSubject() {
+    return this.sidebarNotebookTitleSubject.asObservable();
+  }
+  setSidebarNotebookTitle(data: Notebook) {
+    this.sidebarNotebookTitleSubject.next(data);
   }
 }
