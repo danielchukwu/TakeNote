@@ -15,6 +15,14 @@ a {
   text-decoration: none;
 }
 
+p {
+  margin: 0;
+}
+
+input:focus {
+  outline: none;
+}
+
 /* For WebKit browsers (e.g., Safari, Chrome) */
 ::-webkit-scrollbar {
   width: 0.5rem; /* Adjust width as needed */
@@ -75,6 +83,7 @@ a {
 .disabled-svg path {
   stroke: rgba(0, 0, 0, .1);
 }
+
 
 .input-note-title,
 .input-note-header {
@@ -234,6 +243,7 @@ a {
   font-size: 14px;
   font-weight: 500;
   display: flex;
+  cursor: pointer;
 }
 
 .icon-button-selected {
