@@ -5,17 +5,18 @@ import { apiHostUrl } from 'src/environments/environment.development';
 import { User } from '../models/user';
 import { Note } from '../models/note';
 import { Notebook } from '../models/notebook';
+import { AuthService } from 'src/app/core/auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotebookService {
 
-  constructor(private http:HttpClient) {}
+  constructor(private http:HttpClient, private authService: AuthService) {}
 
   // CREATE
-  createNotebook(data: NgForm){
-    return this.http.post<Notebook>(`${apiHostUrl}/notebooks`, data);
+  createNotebook(){
+    return this.http.post<Notebook>(`${apiHostUrl}/notebooks`, {});
   }
   
   // READ
@@ -32,8 +33,8 @@ export class NotebookService {
   }
 
   // UPDATE
-  updateNotebook(data: NgForm){
-    return this.http.put<Notebook>(`${apiHostUrl}/notebooks`, data);
+  updateNotebook(id: String, data: NgForm | {} ){
+    return this.http.put<Notebook>(`${apiHostUrl}/notebooks/${id}`, data);
   }
 
   // DELETE
