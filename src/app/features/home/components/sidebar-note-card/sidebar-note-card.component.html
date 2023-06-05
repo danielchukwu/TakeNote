@@ -1,16 +1,16 @@
 <div [ngClass]="{'icon-button': !isSelected, 'icon-button-selected': isSelected, 't-mar-10': true, 'bg-light-grey': true}" (mouseenter)="showEditAndDeleteIcon()" (mouseleave)="showEditAndDeleteIcon()" (click)="openNotebook()">
-  <div class="title">
+  <div class="title" *ngIf="notebook">
     <img src="assets/list-todo.svg" loading="lazy" width="20" height="20" alt="note icon" class="black-80 btn-svg-20">
-    <div class="text-block-2" *ngIf="notebook">{{notebook.title}}</div>
+    <div class="text-block-2">{{notebook.title}}</div>
   </div>
   
   <!-- Edit and Delete Icon -->
-  <div class="edit-delete svg-12 svg" *ngIf="showEditAndDeleteIconMode || isSelected">
+  <div class="edit-delete svg-12 svg" *ngIf="isSelected">
     
     <!-- PEN -->
-    <div class="card-svg-box" (click)="update()">
+    <!-- <div class="card-svg-box" (click)="showTitleForm()">
       <app-display-svg [svgName]="'pen'"></app-display-svg>
-    </div>
+    </div> -->
     
     <!-- BIN -->
     <div class="card-svg-box" (click)="delete()">

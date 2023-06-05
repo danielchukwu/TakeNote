@@ -1,7 +1,8 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, map } from 'rxjs';
 import { Notebook } from 'src/app/shared/models/notebook';
+import { DataSharingService } from 'src/app/shared/services/data-sharing.service';
 
 
 @Component({
@@ -9,18 +10,35 @@ import { Notebook } from 'src/app/shared/models/notebook';
   templateUrl: './sidebar-note-card.component.html',
   styleUrls: ['./sidebar-note-card.component.css']
 })
-export class SidebarNoteCardComponent {
+export class SidebarNoteCardComponent implements OnInit {
   @Input() notebook: Notebook | undefined;
   @Input() isSelected = false;
   @Output() selectCard = new EventEmitter();
   showEditAndDeleteIconMode = false;
-  subscription: Subscription | undefined;
+  showUpdateTitleForm = false;
+
   
-  constructor(private router: Router, private route: ActivatedRoute){}
+  constructor(
+    private router: Router, 
+    private dataSharingService: DataSharingService,
+    private route: ActivatedRoute, 
+    ){}
+  ngOnInit(): void {
+    // Update sidebar notebook title when a change is emitted 
+    // from the notes page or anywhere across our application
+    this.dataSharingService.getSidebarNotebookSubject().subscribe((notebook) => {
+      if (notebook != undefined && this.notebook?.id == notebook.id){
+        this.notebook = notebook ?? this.notebook;
+      }
+      
+    });
+  }
 
   showEditAndDeleteIcon() {
     this.showEditAndDeleteIconMode = !this.showEditAndDeleteIconMode ;
   }
+  
+  showTitleForm(){ this.showUpdateTitleForm = !this.showUpdateTitleForm}
 
   openNotebook(){
     // output event
@@ -33,7 +51,4 @@ export class SidebarNoteCardComponent {
     alert('Delete Note Group: ');
   }
   
-  update() {
-    alert('Edit Note Group: ');
-  }
 }

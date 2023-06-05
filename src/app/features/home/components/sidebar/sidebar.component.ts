@@ -14,23 +14,38 @@ import { NotebookService } from 'src/app/shared/services/notebook.service';
 })
 export class SidebarComponent implements OnInit, OnDestroy {
   user: User = this.authService.getUser();
-  notebooks: Observable<Notebook[]> = this.notebook.getNotebooks();
-  selectedCardId: any;
-  subscription$: Subscription | undefined;
+  notebooks: Notebook[] = [];
+  selectedCardId: String = '';
+  
+  // subscription for fetching notebooks - 
+  // we don't use async pipe because we want to be able to add new notebooks to the 
+  // existing list which won't be possible otherwise if we used observables and async pipe
+  sub1$: Subscription | undefined;    
+
+  // subscription for updating selectCardId
+  sub2$: Subscription | undefined;     
 
   constructor(
     private authService: AuthService, 
-    private notebook: NotebookService, 
+    private notebookService: NotebookService, 
     private router: Router,
     private dataSharing: DataSharingService
   ) {}
   ngOnInit(): void {
-    this.subscription$ = this.dataSharing.getSelectedSidebarNotebookId().subscribe((id) => {
+    // get notebooks
+    this.sub1$ = this.notebookService.getNotebooks().subscribe((notebooks)=>{
+      this.notebooks = notebooks;
+    });
+
+    // updates the selected sidebar notebook id
+    this.sub2$ = this.dataSharing.getSelectedSidebarNotebookId().subscribe((id) => {
       this.selectedCardId = id;
     });
   }
   ngOnDestroy(): void {
-    this.subscription$?.unsubscribe();
+    // remove subscription
+    this.sub1$?.unsubscribe();
+    this.sub2$?.unsubscribe();
   }
 
   setSelectedCardId(id: String){ this.selectedCardId = id; }
@@ -40,7 +55,13 @@ export class SidebarComponent implements OnInit, OnDestroy {
     alert('Update users avatar! 🦜');
   }
   createNoteBook() {
-    alert('Create new notebook! 🦜');
+    this.sub1$ = this.notebookService.createNotebook().subscribe((newNotebook) => {
+      console.log(newNotebook);
+      this.notebooks = [newNotebook, ...this.notebooks ];
+      // Open new notebook
+      this.dataSharing.setSelectedSidebarNotebookId(newNotebook.id);
+      this.router.navigate(['n', newNotebook.id])
+    });
   }
   
   // logout

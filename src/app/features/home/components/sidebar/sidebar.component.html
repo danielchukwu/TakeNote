@@ -13,11 +13,11 @@
     </div>
     <div class="add-new-note t-mar-20 app-border" (click)="createNoteBook()">
       <img src="assets/add-sign.svg" loading="lazy" alt="add note icon" class="btn-svg-16 black-80">
-      <div class="text-block-2">New Note</div>
+      <div class="text-block-2">New Notebook</div>
     </div>
     <div class="sp-scroll-wrapper">
       
-      <div *ngFor="let notebook of notebooks | async">
+      <div *ngFor="let notebook of notebooks">
         <app-sidebar-note-card [notebook]="notebook" [isSelected]='selectedCardId === notebook.id'></app-sidebar-note-card>
       </div>
 
