@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter, OnDestroy, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, of } from 'rxjs';
 import { Note } from 'src/app/shared/models/note';
 import { Notebook } from 'src/app/shared/models/notebook';
 import { DataSharingService } from 'src/app/shared/services/data-sharing.service';
@@ -22,8 +23,9 @@ export class NoteComponent implements OnInit, OnDestroy {
     private router: Router,
     private dataSharingService: DataSharingService
   ) {}
+  
   ngOnInit(): void {
-    // This runs whenever the url changes. And when it does we want to fetch data for the 
+    // This runs whenever the url changes. And when it does we want to fetch data for the new notebook
     this.subscription$ = this.route.paramMap.subscribe((paramMap) => {
       const id = this.route.snapshot.params['id'];
       
@@ -38,22 +40,46 @@ export class NoteComponent implements OnInit, OnDestroy {
   }
 
   // CRUD
-
-  // Note Title - This shows the edit form or not and shows the title or not
+  
+  // Title
+  
+  // - show update title input field or not
   editTitleMode = false;
   showTitleForm() { this.editTitleMode = !this.editTitleMode; }
-  updateTitle(field: HTMLInputElement) {
-    console.log("Save New Title: ", field.value)
+
+  // - update : higher-order functions
+  updateTitle(): Function {
+    const service = this.notebookService;
+    const id = this.route.snapshot.params['id']
+    // const notebook$ = this.notebook$;
+
+    const update = (field: HTMLInputElement) => {
+      return service.updateNotebook(id, {title: field.value}).subscribe((notebook: Notebook) => {
+        // Show successful alert
+        this.dataSharingService.setAlert({
+          title: 'Notebook was updated 💪',
+          isSuccess: true,
+          showAlert: true
+        });
+        // Update
+        this.notebook$ = of(notebook);
+        console.log(notebook);
+        this.dataSharingService.setSidebarNotebook(notebook);
+      });
+    }
+    return update;
   }
   
-  // Note Header Title - This shows the edit form for the note header
+  // Header
+  // - show update title input field or not
   editNoteHeaderMode = false;
   showNoteHeaderForm() { this.editNoteHeaderMode = !this.editNoteHeaderMode; }
+  // - update
   updateNoteHeader(field: HTMLInputElement) {
     console.log("Save New Note Header: ", field.value)
   }
   
-  // ADD - new note to data
+  // - new note to data
   addNewNote(value: string, form: HTMLFormElement) {
     console.log("Save new note to the backend: ", value);
     console.log(form);

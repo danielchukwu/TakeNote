@@ -7,11 +7,12 @@
       <h1 class="heading">{{ notebook.title }}</h1>
       <app-display-svg [svgName]="'pen'" ></app-display-svg>
     </div>
+
     <div class="note-title" *ngIf="editTitleMode">
       <app-quick-input-field 
-        [title]="'Personal Life'" 
+        [title]="notebook.title" 
         styles="input-note-title"
-        [save]="updateTitle" 
+        [save]="updateTitle()" 
         (closeInputField)="showTitleForm()">
       </app-quick-input-field>
     </div>
@@ -26,8 +27,8 @@
         <div class="text-block-4">Note</div>
         <app-display-svg [svgName]="'pen'" ></app-display-svg>
       </div>
-      <div class="pill-note-count">
-        <div class="text-block-10">32</div>
+      <div class="pill-note-count" *ngIf="notes$ | async as notes">
+        <div class="text-block-10">{{notes.length}}</div>
       </div>
     </div>
 
