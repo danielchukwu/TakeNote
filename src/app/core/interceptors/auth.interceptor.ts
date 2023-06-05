@@ -7,13 +7,17 @@ import {
   HttpResponse,
   HttpErrorResponse
 } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, catchError } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
+import { DataSharingService } from 'src/app/shared/services/data-sharing.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private dataSharingService: DataSharingService
+  ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     // Exempted Routes
@@ -34,12 +38,13 @@ export class AuthInterceptor implements HttpInterceptor {
     
     console.log("INTERCEPTOR RAN....🦜", newReq);
     return next.handle(newReq).pipe(
-      // catchError(
-      //   (err: HttpErrorResponse) => {
-      //     console.log(err);
-      //     return throwError(() => new Error("Something went wrong with the AuthInterceptor"));
-      //   }
-      // )
+      catchError(
+        (err: HttpErrorResponse) => {
+          console.log(err);
+          this.dataSharingService.setAlert({title: 'An Error has Occurred', isSuccess: false, showAlert: true});
+          return throwError(() => new Error("Something went wrong with the AuthInterceptor"));
+        }
+      ),
     );
   }
 }
