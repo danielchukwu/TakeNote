@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { UserService } from 'src/app/core/auth/user.service';
+import { DataSharingService } from 'src/app/shared/services/data-sharing.service';
 @Component({
   selector: 'app-login',
   templateUrl: '../sign-up/sign-up.component.html',
@@ -21,6 +22,7 @@ export class LoginComponent {
   constructor(
     private userService: UserService,
     private authService: AuthService,
+    private dataSharingService: DataSharingService,
     private router: Router
   ) {}
 
@@ -29,6 +31,7 @@ export class LoginComponent {
       console.log(response);
       this.authService.setToken(response.token);
       this.authService.setUser(response.user);
+      this.dataSharingService.setAlert({title: 'Login was Successful 💪', isSuccess: true, showAlert: true});
       this.router.navigate([""]);
     });
   }
