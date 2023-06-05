@@ -1,0 +1,5 @@
+<div *ngIf="showAlert">
+  <div class="alert-card" [ngClass]="{'success-color': isSuccess, 'error-color': !isSuccess, 'alert-card-animation': showAlert}">
+    <p>{{title}}</p>
+  </div>
+</div>
