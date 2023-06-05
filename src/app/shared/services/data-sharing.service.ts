@@ -12,7 +12,7 @@ export class DataSharingService {
     isSuccess: boolean;
     showAlert: boolean;
   }>({ title: '', isSuccess: false, showAlert: false });
-  private sidebarNotebookTitleSubject = new BehaviorSubject<Notebook | undefined>(undefined);
+  private sidebarNotebookSubject = new BehaviorSubject<Notebook | undefined>(undefined);
 
   constructor() {}
 
@@ -34,9 +34,9 @@ export class DataSharingService {
   
   // SETTER AND GETTER - allows updating of sidebar notification title
   getSidebarNotebookSubject() {
-    return this.sidebarNotebookTitleSubject.asObservable();
+    return this.sidebarNotebookSubject.asObservable();
   }
-  setSidebarNotebookTitle(data: Notebook) {
-    this.sidebarNotebookTitleSubject.next(data);
+  setSidebarNotebook(data: Notebook) {
+    this.sidebarNotebookSubject.next(data);
   }
 }
