@@ -2,7 +2,7 @@
 
   <!-- Text Field -->
   <textarea 
-    (keydown.enter)="submit()"
+    (keydown.enter)="submit(inputField)"
     [(ngModel)]="inputValue"
     matInput 
     #inputField
@@ -16,7 +16,7 @@
   <!-- Submit Icon Button -->
     <mat-icon matSuffix>
       <div 
-        (click)="submit()" 
+        (click)="submit(inputField)"
         [class]="{
           'submit-svg-container': true, 
           'disabled-svg': inputField.value.length == 0, 
