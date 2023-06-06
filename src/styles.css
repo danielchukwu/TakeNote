@@ -84,7 +84,6 @@ input:focus {
   stroke: rgba(0, 0, 0, .1);
 }
 
-
 .input-note-title,
 .input-note-header {
   width: 100%;
@@ -605,6 +604,7 @@ input:focus {
 }
 
 .main-content {
+  width: 100vw;
   position: relative;
   padding-bottom: 5rem;
 }
