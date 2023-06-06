@@ -2,17 +2,15 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { apiHostUrl } from 'src/environments/environment.development';
-import { User } from '../models/user';
 import { Note } from '../models/note';
 import { Notebook } from '../models/notebook';
-import { AuthService } from 'src/app/core/auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotebookService {
 
-  constructor(private http:HttpClient, private authService: AuthService) {}
+  constructor(private http:HttpClient) {}
 
   // CREATE
   createNotebook(){
