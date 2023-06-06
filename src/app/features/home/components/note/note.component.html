@@ -33,15 +33,15 @@
     <div class="note-header">
       <div class="div-block-3">
         <div class="text-block-4">Note</div>
-        <app-display-svg [svgName]="'pen'" ></app-display-svg>
+        <!-- <app-display-svg [svgName]="'pen'" ></app-display-svg> -->
       </div>
-      <div class="pill-note-count" *ngIf="notes$ | async as notes">
+      <div class="pill-note-count" *ngIf="notes">
         <div class="text-block-10">{{notes.length}}</div>
       </div>
     </div>
     <!-- List of Notes -->
     <div class="notes-list-wrapper">
-      <div *ngFor="let note of notes$ | async">
+      <div *ngFor="let note of notes">
         <!-- Note Card -->
         <app-note-card [note]="note"></app-note-card>
       </div>
@@ -51,7 +51,7 @@
   <div class="form-block w-form">
 
     <form id="email-form" name="email-form" #form class="form">
-      <app-text-field (onSubmit)="addNewNote($event, form)"></app-text-field>
+      <app-text-field (onSubmit)="createNote($event)"></app-text-field>
     </form>
     
   </div>
