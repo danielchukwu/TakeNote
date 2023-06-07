@@ -51,7 +51,7 @@
   <div class="form-block w-form">
 
     <form id="email-form" name="email-form" #form class="form">
-      <app-text-field (onSubmit)="createNote($event)"></app-text-field>
+      <app-text-field (createNoteEvent)="createNote($event)"></app-text-field>
     </form>
     
   </div>

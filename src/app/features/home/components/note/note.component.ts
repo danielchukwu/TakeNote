@@ -18,12 +18,15 @@ export class NoteComponent implements OnInit, OnDestroy {
   notes: Note[] = [];
   notebook$: Observable<Notebook> = this.notebookService.getNotebook(this.route.snapshot.params['id']);
   sub1$: Subscription[] = [];
+  editTitleMode = false;
+  editDescriptionMode = false;
+  noteToUpdate: Note | undefined;
 
   constructor(
     private notebookService: NotebookService, 
     private noteService: NoteService, 
     private authService: AuthService,
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
     private router: Router,
     private dataSharingService: DataSharingService
   ) {}
@@ -49,18 +52,9 @@ export class NoteComponent implements OnInit, OnDestroy {
     this.sub1$?.map((sub) => { sub.unsubscribe(); });
   }
 
-  // CRUD
+  // NOTE
   
-  // Header
-  // - show update title input field or not
-  editNoteHeaderMode = false;
-  showNoteHeaderForm() { this.editNoteHeaderMode = !this.editNoteHeaderMode; }
-  // - update
-  updateNoteHeader(field: HTMLInputElement) {
-    console.log("Save New Note Header: ", field.value)
-  }
-  
-  // - new note to data
+  // - Create
   createNote(value: String) {
     console.log(this.route.snapshot.params['id']);
 
@@ -75,12 +69,13 @@ export class NoteComponent implements OnInit, OnDestroy {
       this.sub1$.push(sub$);
     }
   }
+
+  // NOTEBOOK
   
-  // Title
-  // - show update title input field or not
-  editTitleMode = false;
+  // - Title
+  //   show update title input field or not
   showTitleForm() { this.editTitleMode = !this.editTitleMode; }
-  // - update : higher-order functions
+  //   Update : higher-order functions
   updateTitle(): Function {
     const service = this.notebookService;
     const id = this.route.snapshot.params['id']
@@ -103,11 +98,10 @@ export class NoteComponent implements OnInit, OnDestroy {
     return update;
   }
 
-  // Description
-  // - show update description input field or not
-  editDescriptionMode = false;
+  // - Description
+  //   show update description input field or not
   showDescriptionForm() { this.editDescriptionMode = !this.editDescriptionMode; }
-  // - update : higher-order functions
+  //   update : higher-order functions
   updateDescription(): Function {
     const service = this.notebookService;
     const id = this.route.snapshot.params['id']
