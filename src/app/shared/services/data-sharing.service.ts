@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Notebook } from '../models/notebook';
+import { Note } from '../models/note';
 
 @Injectable({
   providedIn: 'root',
@@ -8,15 +9,18 @@ import { Notebook } from '../models/notebook';
 export class DataSharingService {
   private selectedSidebarNotebookId = new BehaviorSubject<String>('');
   private alertSubject = new BehaviorSubject<{
-    title: String;
+    title: String; 
     isSuccess: boolean;
     showAlert: boolean;
   }>({ title: '', isSuccess: false, showAlert: false });
   private sidebarNotebookSubject = new BehaviorSubject<Notebook | undefined>(undefined);
+  // Subjects for notes
+  private noteToUpdateSubject = new BehaviorSubject<Note | undefined>(undefined);
+  private updatedNoteSubject = new BehaviorSubject<Note | undefined>(undefined);
 
   constructor() {}
 
-  // SETTER AND GETTER - reads and updates the selected sidebar notebook id
+  // Sidebar Notebook Id - reads and updates the selected sidebar notebook id
   getSelectedSidebarNotebookId() {
     return this.selectedSidebarNotebookId.asObservable();
   }
@@ -24,7 +28,7 @@ export class DataSharingService {
     this.selectedSidebarNotebookId.next(id);
   }
 
-  // SETTER AND GETTER - displays the alert card pop up notification
+  // Alert - displays the alert card pop up notification
   getAlert() {
     return this.alertSubject.asObservable();
   }
@@ -32,11 +36,18 @@ export class DataSharingService {
     this.alertSubject.next(data);
   }
   
-  // SETTER AND GETTER - allows updating of sidebar notification title
-  getSidebarNotebookSubject() {
+  // Sidebar Title - allows updating of sidebar title
+  getSidebarNotebook() {
     return this.sidebarNotebookSubject.asObservable();
   }
   setSidebarNotebook(data: Notebook) {
     this.sidebarNotebookSubject.next(data);
   }
+  
+  // Sidebar Title - allows updating of sidebar title
+  getNoteToUpdate() { return this.noteToUpdateSubject.asObservable(); }
+  setNoteToUpdate(note: Note | undefined) { this.noteToUpdateSubject.next(note); }
+
+  getUpdatedNote() { return this.updatedNoteSubject.asObservable(); }
+  setUpdatedNote(note: Note | undefined) { this.updatedNoteSubject.next(note); }
 }
