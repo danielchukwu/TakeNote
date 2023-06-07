@@ -26,7 +26,7 @@ export class SidebarNoteCardComponent implements OnInit {
   ngOnInit(): void {
     // Update sidebar notebook title when a change is emitted 
     // from the notes page or anywhere across our application
-    this.dataSharingService.getSidebarNotebookSubject().subscribe((notebook) => {
+    this.dataSharingService.getSidebarNotebook().subscribe((notebook) => {
       if (notebook != undefined && this.notebook?.id == notebook.id){
         this.notebook = notebook ?? this.notebook;
       }
