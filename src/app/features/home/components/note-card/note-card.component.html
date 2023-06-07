@@ -4,12 +4,12 @@
   </div>
   <div class="edit-delete svg-12 svg">
     <!-- PEN -->
-    <div class="card-svg-box" (click)="edit">
+    <div class="card-svg-box" (click)="updateNote()">
       <app-display-svg [svgName]="'pen'"></app-display-svg>
     </div>
     
     <!-- BIN -->
-    <div class="card-svg-box" (click)="delete">
+    <div class="card-svg-box" (click)="updateNote()">
       <app-display-svg [svgName]="'bin'"></app-display-svg>
     </div>
   </div>
