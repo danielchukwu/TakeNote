@@ -14,9 +14,11 @@ export class DataSharingService {
     showAlert: boolean;
   }>({ title: '', isSuccess: false, showAlert: false });
   private sidebarNotebookSubject = new BehaviorSubject<Notebook | undefined>(undefined);
+  private toggleSidebarSubject = new BehaviorSubject<Function>(() => {});
   // Subjects for notes
   private noteToUpdateSubject = new BehaviorSubject<Note | undefined>(undefined);
   private updatedNoteSubject = new BehaviorSubject<Note | undefined>(undefined);
+
 
   constructor() {}
 
@@ -50,4 +52,8 @@ export class DataSharingService {
 
   getUpdatedNote() { return this.updatedNoteSubject.asObservable(); }
   setUpdatedNote(note: Note | undefined) { this.updatedNoteSubject.next(note); }
+
+  //  Side Panel for Mobile - this sets and gets the function that can be used to update the side panel
+  getCloseSidebarPanel() { return this.toggleSidebarSubject.getValue(); }
+  setCloseSidebarPanel(myFunc: Function) { this.toggleSidebarSubject.next(myFunc); }
 }

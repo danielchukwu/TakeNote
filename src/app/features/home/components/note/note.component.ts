@@ -52,6 +52,10 @@ export class NoteComponent implements OnInit, OnDestroy {
     this.sub1$?.map((sub) => { sub.unsubscribe(); });
   }
 
+  removeNotebook(id: String) {
+    this.notes = this.notes.filter((note) => note.id !== id);
+  }
+
   // NOTE
   
   // - Create

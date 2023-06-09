@@ -52,6 +52,7 @@ export class TextFieldComponent implements OnInit, OnDestroy {
     if (this.updateNote === undefined){
       this.createNoteEvent.emit(inputField.value);
       this.inputValue="";
+      this.autosize.resizeToFitContent(true);  // reset textarea back to 1 line
       return;
     }
     // update existing note
