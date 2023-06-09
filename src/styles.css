@@ -6,6 +6,7 @@ body {
   /* overflow: auto; */
   font-family: Poppins, sans-serif;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 div { font-family: Poppins, sans-serif; }
@@ -204,13 +205,13 @@ input:focus {
   width: 50px;
   height: 50px;
   border-radius: 10%;
-  background-color: #1679f7;
+  background-color: rgba(0, 0, 0, .25);
   cursor: pointer;
   overflow: hidden;
 }
 
 .avatar-container:hover {
-  background-color: #006eff;
+  background-color:  rgba(0, 0, 0, .3);
 }
 
 .avatar-container img {
@@ -270,6 +271,7 @@ input:focus {
   font-size: 14px;
   font-weight: 500;
   display: flex;
+  cursor: pointer;
 }
 
 .icon-button:hover {
@@ -314,6 +316,7 @@ input:focus {
 }
 
 .text-block-2 {
+  max-width: 12rem;
   text-align: left;
   white-space: nowrap;
   cursor: pointer;
@@ -344,6 +347,19 @@ input:focus {
   bottom: 0%;
   left: 0%;
   right: 0%;
+}
+
+.sidebar-text-overlay, .sidebar-text-overlay-selected {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 30px; /* Set the width of the fade-out effect */
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), #f1f1f1);
+}
+
+.sidebar-text-overlay-selected {
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), #d1d1d1);
 }
 
 .link {
@@ -473,7 +489,7 @@ input:focus {
 }
 
 .text-block-5 {
-  color: rgba(0, 0, 0, .7);
+  color: rgb(46, 46, 46);
   padding-right: 0.8rem;
   font-size: 16px;
   font-weight: 500;
@@ -736,6 +752,7 @@ input:focus {
   width: 100%;
   align-items: center;
   display: flex;
+  position: relative;
 }
 
 .add-new-note {
@@ -930,6 +947,7 @@ input:focus {
   }
 
   .text-block-2 {
+    max-width: 14.8rem;
     flex: 0 auto;
     overflow: hidden;
   }
@@ -946,7 +964,6 @@ input:focus {
   .sp-scroll-wrapper {
     padding-bottom: 1.2rem;
     display: block;
-    overflow-y: auto;
   }
 
   .edit-pen {
@@ -1083,6 +1100,7 @@ input:focus {
 @media screen and (max-width: 767px) {
 
   .sp-scroll-wrapper {
+    overflow-x: hidden;
     padding-bottom: 20px;
   }
 
@@ -1096,7 +1114,6 @@ input:focus {
 
   .edit-delete {
     justify-content: flex-end;
-    padding-top: 15px;
   }
 
   .content {
@@ -1174,7 +1191,7 @@ input:focus {
   }
 
   .side-panel {
-    width: 80%;
+    width: 300px;
     top: 0;
   }
 
@@ -1224,5 +1241,16 @@ input:focus {
     padding-right: 10px;
   }
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
+
+@media screen and (max-width: 350px) {
+  .text-block-2 {
+    max-width: 8.5rem;
+  }
+
+  .side-panel {
+    width: 230px;
+    top: 0;
+  }
+}
