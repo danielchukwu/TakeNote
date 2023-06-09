@@ -43,7 +43,7 @@
     <div class="notes-list-wrapper">
       <div *ngFor="let note of notes">
         <!-- Note Card -->
-        <app-note-card [note]="note"></app-note-card>
+        <app-note-card [note]="note" (removeNoteId)="removeNotebook($event);" ></app-note-card>
       </div>
     </div>
 

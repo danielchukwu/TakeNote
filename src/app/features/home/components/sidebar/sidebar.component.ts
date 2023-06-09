@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { AuthService } from 'src/app/core/auth/auth.service';
@@ -48,7 +48,16 @@ export class SidebarComponent implements OnInit, OnDestroy {
     this.sub2$?.unsubscribe();
   }
 
-  setSelectedCardId(id: String){ this.selectedCardId = id; }
+
+  removeNotebook(id: String) {
+    this.notebooks = this.notebooks.filter((notebook) => notebook.id !== id);
+  }
+
+  // setSelectedCardId(id: String){ 
+  //   this.selectedCardId = id; 
+  //   this.closeSidebarMobile();
+  //   console.log('Function was called');
+  // }
 
   // CRUD
   updateAvatar() {

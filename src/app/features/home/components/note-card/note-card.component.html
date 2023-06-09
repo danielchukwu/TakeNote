@@ -1,6 +1,6 @@
 <div class="note-item">
   <div class="content">
-    <div class="text-block-5">{{note.body}}</div>
+    <div class="text-block-5">{{note?.body}}</div>
   </div>
   <div class="edit-delete svg-12 svg">
     <!-- PEN -->
@@ -9,7 +9,7 @@
     </div>
     
     <!-- BIN -->
-    <div class="card-svg-box" (click)="updateNote()">
+    <div class="card-svg-box" (click)="deleteNote()">
       <app-display-svg [svgName]="'bin'"></app-display-svg>
     </div>
   </div>

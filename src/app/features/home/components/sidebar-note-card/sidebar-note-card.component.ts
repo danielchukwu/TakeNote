@@ -1,8 +1,8 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription, map } from 'rxjs';
+import { Router } from '@angular/router';
 import { Notebook } from 'src/app/shared/models/notebook';
 import { DataSharingService } from 'src/app/shared/services/data-sharing.service';
+import { NotebookService } from 'src/app/shared/services/notebook.service';
 
 
 @Component({
@@ -16,12 +16,13 @@ export class SidebarNoteCardComponent implements OnInit {
   @Output() selectCard = new EventEmitter();
   showEditAndDeleteIconMode = false;
   showUpdateTitleForm = false;
+  @Output() removeNotebookId = new EventEmitter();
 
   
   constructor(
     private router: Router, 
+    private notebookService: NotebookService,
     private dataSharingService: DataSharingService,
-    private route: ActivatedRoute, 
     ){}
   ngOnInit(): void {
     // Update sidebar notebook title when a change is emitted 
@@ -38,17 +39,23 @@ export class SidebarNoteCardComponent implements OnInit {
     this.showEditAndDeleteIconMode = !this.showEditAndDeleteIconMode ;
   }
   
-  showTitleForm(){ this.showUpdateTitleForm = !this.showUpdateTitleForm}
+  showTitleForm(){ this.showUpdateTitleForm = !this.showUpdateTitleForm; }
 
   openNotebook(){
     // output event
     this.selectCard.emit(this.notebook?.id);
     // navigate to new notebook rout
     this.router.navigate(['n', this.notebook?.id]);
+    // if we are on a mobile view toggle the sidebar to false
+    // this will close the sidebar panel from view
+    this.dataSharingService.getCloseSidebarPanel()();
   }
   
   delete() {
-    alert('Delete Note Group: ');
+    this.notebookService.deleteNotebook(`${this.notebook?.id}`).subscribe((result) => {
+      this.dataSharingService.setAlert({title: 'Notebook deleted successfully', isSuccess: true, showAlert: true});
+      this.router.navigate(['']);
+      this.removeNotebookId.emit(`${this.notebook?.id}`);
+    });
   }
-  
 }

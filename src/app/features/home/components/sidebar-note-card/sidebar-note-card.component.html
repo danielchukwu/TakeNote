@@ -2,6 +2,7 @@
   <div class="title" *ngIf="notebook">
     <img src="assets/list-todo.svg" loading="lazy" width="20" height="20" alt="note icon" class="black-80 btn-svg-20">
     <div class="text-block-2">{{notebook.title}}</div>
+    <div [ngClass]="{'sidebar-text-overlay-selected': isSelected}"></div>
   </div>
   
   <!-- Edit and Delete Icon -->
