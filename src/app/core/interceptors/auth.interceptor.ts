@@ -41,7 +41,7 @@ export class AuthInterceptor implements HttpInterceptor {
       catchError(
         (err: HttpErrorResponse) => {
           console.log(err);
-          this.dataSharingService.setAlert({title: 'An Error has Occurred', isSuccess: false, showAlert: true});
+          this.dataSharingService.setAlert({title: 'An Error Occurred', isSuccess: false, showAlert: true});
           return throwError(() => new Error("Something went wrong with the AuthInterceptor"));
         }
       ),
