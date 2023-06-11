@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Notebook } from 'src/app/shared/models/notebook';
 import { DataSharingService } from 'src/app/shared/services/data-sharing.service';
 import { NotebookService } from 'src/app/shared/services/notebook.service';
@@ -17,6 +18,7 @@ export class SidebarNoteCardComponent implements OnInit {
   showEditAndDeleteIconMode = false;
   showUpdateTitleForm = false;
   @Output() removeNotebookId = new EventEmitter();
+  sub1$: Subscription[] = [];
 
   
   constructor(
@@ -31,7 +33,6 @@ export class SidebarNoteCardComponent implements OnInit {
       if (notebook != undefined && this.notebook?.id == notebook.id){
         this.notebook = notebook ?? this.notebook;
       }
-      
     });
   }
 
