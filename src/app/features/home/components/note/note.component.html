@@ -2,12 +2,14 @@
   <div class="note-content">
 
     <!-- Note Title -->
-    <div class="note-title" (click)="showTitleForm()" *ngIf="!editTitleMode">
-      <!-- <h1 class="heading">Personal Life</h1> -->
-      <h1 class="heading">{{ notebook.title }}</h1>
-      <app-display-svg [svgName]="'pen'" ></app-display-svg>
+    <div>
+      <div class="note-title" (click)="showTitleForm()" *ngIf="!editTitleMode">
+        <h1 class="heading">{{ notebook.title }}</h1>
+        <app-display-svg [svgName]="'pen'" ></app-display-svg>
+        
+      </div>
     </div>
-
+    
     <div class="note-title" *ngIf="editTitleMode">
       <app-quick-input-field 
         [title]="notebook.title" 
@@ -17,9 +19,11 @@
       </app-quick-input-field>
     </div>
       
-    <div class="about-note" (click)="showDescriptionForm()">
-      <div class="text-block-3" *ngIf="!editDescriptionMode">{{ notebook.description }}</div>
-      <div class="note-header" *ngIf="editDescriptionMode">
+    <div class="about-note">
+      <div class="about-block" *ngIf="!editDescriptionMode" (click)="showDescriptionForm()">
+        <p>{{ notebook.description }}</p>
+      </div>
+      <div *ngIf="editDescriptionMode">
         <app-quick-input-field 
           [title]="notebook.description" 
           styles="input-note-description"
@@ -29,9 +33,9 @@
       </div>
     </div>
 
-    <!-- Note Header -->
-    <div class="note-header">
-      <div class="div-block-3">
+    <!-- Note Section Title -->
+    <div class="note-section-title">
+      <div class="note-section">
         <div class="text-block-4">Note</div>
         <!-- <app-display-svg [svgName]="'pen'" ></app-display-svg> -->
       </div>
@@ -52,6 +56,63 @@
 
     <form id="email-form" name="email-form" #form class="form">
       <app-text-field (createNoteEvent)="createNote($event)"></app-text-field>
+    </form>
+    
+  </div>
+</div>
+
+
+<!-- Loader -->
+
+<div class="main-content" *ngIf="(notebook$ | async) === null">
+  <div class="note-content">
+
+    <!-- Note Title - Loader -->
+    <div class="note-header-loader">
+      <ngx-skeleton-loader count="1" appearance="line" [theme]="{ 
+        'height.px': 70,
+        'background-color': 'rgba(0,0,0,.03)',
+        'border-radius.px': 10,
+      }"></ngx-skeleton-loader>
+
+    </div>
+    
+    
+    <!-- Note Description - Loader -->
+    <div class="note-description-loader">
+      <ngx-skeleton-loader count="2" appearance="line" [theme]="{ 
+        'height.px': 16,
+        'background-color': 'rgba(0,0,0,.03)',
+        'border-radius.px': 10,
+      }"></ngx-skeleton-loader>
+    </div>
+
+    <!-- Note Section Title - Loader -->
+    <div class="note-section-title-loader">
+      <div class="note-section">
+        <div class="text-block-4">Note</div>
+        <!-- <app-display-svg [svgName]="'pen'" ></app-display-svg> -->
+      </div>
+      <div class="pill-note-count">
+        <div class="text-block-10">0</div>
+      </div>
+    </div>
+
+    <!-- List of Notes -->
+
+    <div class="note-content-loader">
+      <ngx-skeleton-loader count="4" appearance="line" [theme]="{ 
+        'height.px': 20,
+        'background-color': 'rgba(0,0,0,.03)',
+        'border-radius.px': 10,
+      }"></ngx-skeleton-loader>
+    </div>
+
+  </div>
+  <div class="form-block w-form">
+
+    <form id="email-form" name="email-form" class="form">
+      <app-text-field></app-text-field>
     </form>
     
   </div>
