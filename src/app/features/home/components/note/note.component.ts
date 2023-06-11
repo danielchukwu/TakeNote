@@ -63,9 +63,9 @@ export class NoteComponent implements OnInit, OnDestroy {
     console.log(this.route.snapshot.params['id']);
 
     // add note
-    if (value.length > 0){
+    if (value.trim().length > 0 || value.trim() !== ''){
       const sub$ = this.noteService.createNote({
-        body: value,
+        body: value.trim(),
         notebookId: this.route.snapshot.params['id'],
         userId: this.authService.getUser().id
       }).subscribe((newNote) => { this.notes = [newNote, ...this.notes] });
