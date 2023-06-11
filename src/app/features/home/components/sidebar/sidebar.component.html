@@ -17,6 +17,13 @@
     </div>
     <div class="sp-scroll-wrapper">
       
+      <div class="sidebar-notebook-loader" *ngIf="notebooks.length === 0">
+        <ngx-skeleton-loader count="9" appearance="line" [theme]="{ 
+          'height.px': 45,
+          'background-color': 'rgba(0,0,0,.03)',
+          'border-radius.px': 10,
+        }"></ngx-skeleton-loader>
+      </div>
       <div *ngFor="let notebook of notebooks">
         <app-sidebar-note-card [notebook]="notebook" [isSelected]='selectedCardId === notebook.id' (removeNotebookId)="removeNotebook($event)"></app-sidebar-note-card>
       </div>
