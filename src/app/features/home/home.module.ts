@@ -15,6 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { HomeRoutingModule } from './home-routing.module';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { HomeRoutingModule } from './home-routing.module';
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
-    SharedModule
+    SharedModule,
+    NgxSkeletonLoaderModule
   ]
 })
 export class HomeModule { }

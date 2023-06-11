@@ -13,6 +13,7 @@ import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { UserService } from './core/auth/user.service';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,9 @@ import { UserService } from './core/auth/user.service';
     SharedModule,
     BrowserAnimationsModule,
     RouterModule,
+    NgxSkeletonLoaderModule.forRoot({
+      animation: 'pulse',
+    }),
   ],
   providers: [
     AuthService,
