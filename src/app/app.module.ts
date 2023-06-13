@@ -14,10 +14,12 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { UserService } from './core/auth/user.service';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { WelcomeComponent } from './features/welcome/welcome.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    WelcomeComponent,
   ],
   imports: [
     BrowserModule,
