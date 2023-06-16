@@ -5,6 +5,7 @@ import { User } from 'src/app/shared/models/user';
   providedIn: 'root'
 })
 export class AuthService {
+  
   tokenName = "token";
   user = "user";
 
@@ -42,6 +43,10 @@ export class AuthService {
 
   removeUser() {
     localStorage.removeItem(this.user);
+  }
+
+  isAuthenticated() {
+    return this.getUser().id !== undefined;
   }
 
   // Clear LocalStorage
