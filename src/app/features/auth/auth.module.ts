@@ -5,6 +5,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from 'src/app/core/auth/auth.service';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -16,7 +17,8 @@ import { AuthService } from 'src/app/core/auth/auth.service';
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ],
   exports: [SignUpComponent, LoginComponent],
   providers: [AuthService]
