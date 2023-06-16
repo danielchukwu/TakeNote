@@ -51,7 +51,44 @@ input:focus {
   background-color: rgba(0, 0, 0, .4); /* Adjust thumb color on hover */
 }
 
+/* Button */
+.app-button-1, .app-button-1-outline, .app-button-arrow, .app-button-round {
+  padding: 6px 40px;
+  background: rgba(0, 0, 0, .85);
+  color: #fff;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
+.app-button-1-outline {
+  background: transparent;
+  color:  rgba(0, 0, 0, .9);
+}
+
+.app-button-round {
+  border-radius: 50px;
+}
+
+.app-button-1:hover, .app-button-arrow:hover, .app-button-round:hover {background: rgba(0, 0, 0, .95);}
+.app-button-1-outline:hover {background: rgba(0, 0, 0, .05);}
+
+.app-button-1:active, .app-button-arrow:active, .app-button-round:active {background: rgba(0, 0, 0, .85);}
+.app-button-1-outline:active {background: transparent;}
+
+.app-button-arrow {
+  display: inline-block;
+  padding: 10px 30px;
+  flex-grow: 1;
+}
+
+.app-button-arrow-flex {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* Svg */
 .svg-10 svg {width: 10px; height: 10px;}
 .svg-12 svg {width: 12px; height: 12px;}
 .svg-14 svg {width: 14px; height: 14px;}
@@ -698,7 +735,7 @@ input:focus {
 
 
 .section-2 {
-  height: 100vh;
+  padding-top: 5rem;
 }
 
 .auth-img-wrapper {
