@@ -15,6 +15,7 @@ import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { UserService } from './core/auth/user.service';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { WelcomeComponent } from './features/welcome/welcome.component';
+import {NgsRevealModule} from 'ngx-scrollreveal';
 
 @NgModule({
   declarations: [
@@ -30,9 +31,6 @@ import { WelcomeComponent } from './features/welcome/welcome.component';
     SharedModule,
     BrowserAnimationsModule,
     RouterModule,
-    NgxSkeletonLoaderModule.forRoot({
-      animation: 'pulse',
-    }),
   ],
   providers: [
     AuthService,
