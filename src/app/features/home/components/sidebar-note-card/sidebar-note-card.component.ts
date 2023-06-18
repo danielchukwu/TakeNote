@@ -29,7 +29,7 @@ export class SidebarNoteCardComponent implements OnInit {
   ngOnInit(): void {
     // Update sidebar notebook title when a change is emitted 
     // from the notes page or anywhere across our application
-    this.dataSharingService.getSidebarNotebook().subscribe((notebook) => {
+    this.dataSharingService.getSelectedNotebook().subscribe((notebook) => {
       if (notebook != undefined && this.notebook?.id == notebook.id){
         this.notebook = notebook ?? this.notebook;
       }
@@ -47,6 +47,9 @@ export class SidebarNoteCardComponent implements OnInit {
     this.selectCard.emit(this.notebook?.id);
     // navigate to new notebook rout
     this.router.navigate(['n', this.notebook?.id]);
+
+    // Set newly selectedNotebook
+    this.dataSharingService.setSelectedNotebook(this.notebook);
     // if we are on a mobile view toggle the sidebar to false
     // this will close the sidebar panel from view
     this.dataSharingService.getCloseSidebarPanel()();
