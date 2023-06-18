@@ -13,9 +13,9 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { AppRoutingModule } from 'src/app/app-routing.module';
 import { HomeRoutingModule } from './home-routing.module';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { WelcomeComponent } from '../welcome/welcome.component';
 
 
 @NgModule({
@@ -28,6 +28,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     SidebarNoteCardComponent,
     TextFieldComponent,
     NoteComponent,
+    WelcomeComponent,
   ],
   imports: [
     HomeRoutingModule,
