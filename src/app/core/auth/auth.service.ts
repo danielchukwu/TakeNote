@@ -45,7 +45,7 @@ export class AuthService {
     localStorage.removeItem(this.user);
   }
 
-  isAuthenticated() {
+  isAuthenticated(): boolean {
     return this.getUser().id !== undefined;
   }
 

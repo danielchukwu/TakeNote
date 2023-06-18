@@ -16,7 +16,7 @@ import { IconButtonComponent } from './components/buttons/icon-button/icon-butto
     AlertCardComponent,
     HeaderComponent,
     SquareButtonComponent,
-    IconButtonComponent
+    IconButtonComponent,
   ],
   imports: [
     RouterModule,

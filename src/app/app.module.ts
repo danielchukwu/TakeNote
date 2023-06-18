@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
@@ -13,14 +12,10 @@ import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { UserService } from './core/auth/user.service';
-import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
-import { WelcomeComponent } from './features/welcome/welcome.component';
-import {NgsRevealModule} from 'ngx-scrollreveal';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WelcomeComponent,
   ],
   imports: [
     BrowserModule,
