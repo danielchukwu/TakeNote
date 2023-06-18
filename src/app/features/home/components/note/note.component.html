@@ -64,7 +64,7 @@
 
 <!-- Loader -->
 
-<div class="main-content" *ngIf="(notebook$ | async) === null">
+<div class="main-content" *ngIf="(notebook$ | async) === undefined && notes.length === 0">
   <div class="note-content">
 
     <!-- Note Title - Loader -->

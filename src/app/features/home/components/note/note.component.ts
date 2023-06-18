@@ -1,7 +1,6 @@
-import { Component, Output, EventEmitter, OnDestroy, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, Subscription, of, map } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable, Subscription, of } from 'rxjs';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { Note } from 'src/app/shared/models/note';
 import { Notebook } from 'src/app/shared/models/notebook';
@@ -16,22 +15,29 @@ import { NotebookService } from 'src/app/shared/services/notebook.service';
 })
 export class NoteComponent implements OnInit, OnDestroy {
   notes: Note[] = [];
-  notebook$: Observable<Notebook> = this.notebookService.getNotebook(this.route.snapshot.params['id']);
+  notebook$: Observable<Notebook | undefined> = new Observable;
   sub1$: Subscription[] = [];
   editTitleMode = false;
   editDescriptionMode = false;
   noteToUpdate: Note | undefined;
+  showNotebookSkeleton = true;
+  showNoteSkeleton = true;
 
   constructor(
     private notebookService: NotebookService, 
     private noteService: NoteService, 
     private authService: AuthService,
     private route: ActivatedRoute,
-    private router: Router,
     private dataSharingService: DataSharingService
   ) {}
   
   ngOnInit(): void {
+    // First time this page loads, fetch the notebook from the database and set the 
+    // selectedNotebook using our dataSharingService. So that whichever component needs this data can get it in real time
+    const sub$ = this.notebookService.getNotebook(this.route.snapshot.params['id']).subscribe((notebook) => {
+      this.dataSharingService.setSelectedNotebook(notebook);
+      this.showNotebookSkeleton = false;
+    });
     // This runs whenever the url changes. 
     // And when it does we want to fetch data for the new notebook
     const urlChangeListenerSubscription$ = 
@@ -39,12 +45,16 @@ export class NoteComponent implements OnInit, OnDestroy {
         const id = this.route.snapshot.params['id'];
         // Get notebooks notes list
         this.notebookService
-          .getNotes(this.route.snapshot.params['id'])
-          .subscribe((notesList) => { this.notes = notesList})
-        this.notebook$ = this.notebookService.getNotebook(id);
-        // Update Selected Sidebar Notebook
-        this.dataSharingService.setSelectedSidebarNotebookId(id);
+          .getNotes(id)
+          .subscribe((notesList) => { 
+            this.notes = notesList; 
+            this.showNoteSkeleton = false; 
+          })
+
+          // Update Selected Sidebar Notebook
+          this.notebook$ = this.dataSharingService.getSelectedNotebook();
       });
+    this.sub1$?.push(sub$);
     this.sub1$?.push(urlChangeListenerSubscription$);
   }
   ngOnDestroy() {
@@ -82,7 +92,10 @@ export class NoteComponent implements OnInit, OnDestroy {
   //   Update : higher-order functions
   updateTitle(): Function {
     const service = this.notebookService;
-    const id = this.route.snapshot.params['id']
+    const id = this.route.snapshot.params['id'];
+    let title: String | undefined;
+    const sub$ = this.notebook$.subscribe((notebook) => {title = notebook?.title; });
+    this.sub1$.push(sub$);
 
     const update = (field: HTMLInputElement) => {
       // Check Validity
@@ -90,13 +103,15 @@ export class NoteComponent implements OnInit, OnDestroy {
         this.dataSharingService.setAlert({ title: "Notebook description can't be empty 😕", isSuccess: false, showAlert: true});
         return;
       }
+      // Check that title to be updated actually changed
+      if (title === field.value.trim()) { return; }
 
       return service.updateNotebook(id, {title: field.value.trim()}).subscribe((notebook: Notebook) => {
         // Show successful alert
         this.dataSharingService.setAlert({ title: 'Notebook was updated 💪', isSuccess: true, showAlert: true});
         // Update
         this.notebook$ = of(notebook);
-        this.dataSharingService.setSidebarNotebook(notebook);
+        this.dataSharingService.setSelectedNotebook(notebook);
       });
     }
     return update;
@@ -109,6 +124,9 @@ export class NoteComponent implements OnInit, OnDestroy {
   updateDescription(): Function {
     const service = this.notebookService;
     const id = this.route.snapshot.params['id']
+    let description: String | undefined;
+    const sub$ = this.notebook$.subscribe((notebook) => {description = notebook?.description; });
+    this.sub1$.push(sub$);
 
     const update = (field: HTMLInputElement) => {
       // Check Validity
@@ -116,6 +134,9 @@ export class NoteComponent implements OnInit, OnDestroy {
         this.dataSharingService.setAlert({ title: "Notebook description can't be empty 😕", isSuccess: false, showAlert: true});
         return;
       }
+
+      // Check that title to be updated actually changed
+      if (description === field.value.trim()) { return; }
 
       return service.updateNotebook(id, {description: field.value.trim()}).subscribe((notebook: Notebook) => {
         // Show successful alert
