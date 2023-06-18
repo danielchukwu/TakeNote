@@ -1,4 +1,5 @@
-<section class="section wf-section">
+<!-- Show App home screen if user is authenticated -->
+<section class="section wf-section" *ngIf="isAuthenticated()">
   <div class="main">
 
     <!-- Mobile Only - Top Navbar -->
@@ -8,7 +9,7 @@
         <img src="assets/menu-fff.svg" loading="lazy" alt="menu" class="image-6">
       </div>
       <div>
-        <div class="text-block-6">Really Good Movies 📽️🧑‍🎤</div>
+        <div class="text-block-6">{{headerTitle}}</div>
       </div>
       <!-- Add Note Icon -->
       <div (click)="toggleSidePanel()">
@@ -28,6 +29,11 @@
 
     <!-- NOTE - Main Content -->
     <router-outlet></router-outlet>
-    
+
   </div>
 </section>
+
+<!-- Show Welcome Screen if user is not authenticated -->
+<ng-container *ngIf="!isAuthenticated()">
+  <app-welcome></app-welcome>
+</ng-container>
