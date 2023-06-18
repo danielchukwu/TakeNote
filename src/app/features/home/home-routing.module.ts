@@ -8,7 +8,6 @@ const routes: Routes = [
   {
     path: '', 
     component: HomeComponent,
-    canActivate: [authGuard],
     children: [
       {path: 'n/:id', component: NoteComponent},
     ]
