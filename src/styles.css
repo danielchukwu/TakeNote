@@ -1101,25 +1101,19 @@ input:focus {
   }
 
   .top-nav-bar {
-    z-index: 1;
-    height: 40px;
-    grid-column-gap: 16px;
-    grid-row-gap: 16px;
-    background-color: rgba(0, 0, 0, .9);
-    grid-template-rows: auto auto;
-    grid-template-columns: .25fr 1.25fr .25fr;
-    grid-auto-columns: 1fr;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: 40px;
-    padding-right: 40px;
-    display: flex;
     position: fixed;
     top: 0%;
     bottom: auto;
-    left: 0%;
-    right: 0%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, .9);
+    width: 100%;
   }
+  
 
   .text-block-6 {
     color: #fff;
