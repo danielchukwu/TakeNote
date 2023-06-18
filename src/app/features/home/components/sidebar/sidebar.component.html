@@ -25,7 +25,7 @@
         }"></ngx-skeleton-loader>
       </div>
       <div *ngFor="let notebook of notebooks">
-        <app-sidebar-note-card [notebook]="notebook" [isSelected]='selectedCardId === notebook.id' (removeNotebookId)="removeNotebook($event)"></app-sidebar-note-card>
+        <app-sidebar-note-card [notebook]="notebook" [isSelected]='selectedNotebook?.id === notebook.id' (removeNotebookId)="removeNotebook($event)"></app-sidebar-note-card>
       </div>
 
     </div>

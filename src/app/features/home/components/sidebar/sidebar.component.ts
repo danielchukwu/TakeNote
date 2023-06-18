@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { Notebook } from 'src/app/shared/models/notebook';
 import { User } from 'src/app/shared/models/user';
@@ -15,7 +15,7 @@ import { NotebookService } from 'src/app/shared/services/notebook.service';
 export class SidebarComponent implements OnInit, OnDestroy {
   user: User = this.authService.getUser();
   notebooks: Notebook[] = [];
-  selectedCardId: String = '';
+  selectedNotebook: Notebook | undefined;
   
   // subscription for fetching notebooks - 
   // we don't use async pipe because we want to be able to add new notebooks to the 
@@ -38,8 +38,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
     });
 
     // updates the selected sidebar notebook id
-    this.sub2$ = this.dataSharing.getSelectedSidebarNotebookId().subscribe((id) => {
-      this.selectedCardId = id;
+    this.sub2$ = this.dataSharing.getSelectedNotebook().subscribe((notebook) => {
+      console.log('New Notebook Selected');
+      this.selectedNotebook = notebook;
     });
   }
   ngOnDestroy(): void {
@@ -47,7 +48,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
     this.sub1$?.unsubscribe();
     this.sub2$?.unsubscribe();
   }
-
 
   removeNotebook(id: String) {
     this.notebooks = this.notebooks.filter((notebook) => notebook.id !== id);
@@ -68,7 +68,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
       console.log(newNotebook);
       this.notebooks = [newNotebook, ...this.notebooks ];
       // Open new notebook
-      this.dataSharing.setSelectedSidebarNotebookId(newNotebook.id);
+      this.dataSharing.setSelectedNotebook(newNotebook);
       this.router.navigate(['n', newNotebook.id])
     });
   }
