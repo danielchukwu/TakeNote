@@ -1,5 +1,5 @@
 {
-  "name": "angular-p1",
+  "name": "takenote-frontend",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -10,6 +10,7 @@
   },
   "private": true,
   "dependencies": {
+    "@abacritt/angularx-social-login": "^2.1.0",
     "@angular/animations": "^16.0.0",
     "@angular/cdk": "^16.0.2",
     "@angular/common": "^16.0.0",
@@ -21,7 +22,6 @@
     "@angular/platform-browser-dynamic": "^16.0.0",
     "@angular/router": "^16.0.0",
     "gsap": "^3.12.1",
-    "ngx-scrollreveal": "^3.0.0",
     "ngx-skeleton-loader": "^7.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
