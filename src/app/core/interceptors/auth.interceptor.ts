@@ -35,15 +35,6 @@ export class AuthInterceptor implements HttpInterceptor {
       setHeaders: {Authorization: `Bearer ${usersToken}`}
     })
     
-    console.log("INTERCEPTOR RAN....🦜", newReq);
-    return next.handle(newReq).pipe(
-      catchError(
-        (err: HttpErrorResponse) => {
-          console.log(err);
-          this.dataSharingService.setAlert({title: 'An Error Occurred', isSuccess: false, showAlert: true});
-          return throwError(() => new Error("Something went wrong with the AuthInterceptor"));
-        }
-      ),
-    );
+    return next.handle(newReq)
   }
 }
