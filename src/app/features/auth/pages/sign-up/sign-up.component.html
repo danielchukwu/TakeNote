@@ -5,11 +5,20 @@
   <div class="main-for-form">
     <div class="auth-form">
       <div class="auth-form-wrapper">
-        <h1 class="create-ur-acct">Create Your Account</h1>
+        <h1 class="create-ur-acct" *ngIf="!isLogin">Create an Account</h1>
+        <h1 class="create-ur-acct" *ngIf="isLogin">Login to Your Account</h1>
+
         <div class="signup-google" (click)="authenticateGoogle()">
           <img
-            src="assets/google.svg" loading="lazy" width="20" height="20" alt="google icon"/>
-          <div class="button-text" *ngIf="isLogin; else signUpWithGoogle">Login with Google</div>
+            src="assets/google.svg"
+            loading="lazy"
+            width="20"
+            height="20"
+            alt="google icon"
+          />
+          <div class="button-text" *ngIf="isLogin; else signUpWithGoogle">
+            Login with Google
+          </div>
           <ng-template #signUpWithGoogle>
             <div class="button-text">Sign up with Google</div>
           </ng-template>
@@ -20,16 +29,23 @@
           <div class="line"></div>
         </div>
         <div class="w-form">
-
           <!-- FORM -->
-          <form id="email-form-2" name="email-form-2" #form="ngForm" (ngSubmit)="authenticate(form.value)">
-            
+          <form
+            id="email-form-2"
+            name="email-form-2"
+            #form="ngForm"
+            (ngSubmit)="authenticate(form.value)"
+          >
             <!-- Name Field, Email Field, Password Field -->
             <div *ngFor="let field of fieldsList">
               <!-- <app-label-and-input-field [title]="field.title" [type]="field.type"></app-label-and-input-field> -->
               <div class="input-field-wrapper">
-                <label for="{{ field.title | lowercase }}" class="signin-login-label">{{ field.title | lowercase }}</label>
-                <input 
+                <label
+                  for="{{ field.title | lowercase }}"
+                  class="signin-login-label"
+                  >{{ field.title | lowercase }}</label
+                >
+                <input
                   type="{{ field.type }}"
                   id="{{ field.title | lowercase }}"
                   maxlength="256"
@@ -41,7 +57,7 @@
                 />
               </div>
             </div>
-            
+
             <!-- ✅ I agree to all Terms & Conditions -->
             <div class="terms-and-conditions" *ngIf="!isLogin">
               <label class="w-checkbox">
@@ -54,10 +70,15 @@
                   ngModel
                   required
                 />
-                <span class="checkbox-label w-form-label" for="checkbox" style="padding-right: 5px;">I agree to all</span>
+                <span
+                  class="checkbox-label w-form-label"
+                  for="checkbox"
+                  style="padding-right: 5px"
+                  >I agree to all</span
+                >
 
                 <!-- <a [routerLink]="['']"> -->
-                  <div class="text-block-8">Terms &amp; Conditions</div>
+                <div class="text-block-8">Terms &amp; Conditions</div>
                 <!-- </a> -->
               </label>
             </div>
@@ -65,13 +86,29 @@
             <!-- Submit Button -->
 
             <!-- Login -->
-            <input type="submit" value="Login" *ngIf="isLogin; else signUpButton" [disabled]="form.invalid" [ngClass]="{'signin-login-btn': true, 'disabled-button': form.invalid}"/>
+            <input
+              type="submit"
+              value="Login"
+              *ngIf="isLogin; else signUpButton"
+              [disabled]="form.invalid"
+              [ngClass]="{
+                'signin-login-btn': true,
+                'disabled-button': form.invalid
+              }"
+            />
 
             <!-- Signup -->
             <ng-template #signUpButton>
-              <input type="submit" value="Sign up" [disabled]="form.invalid" [ngClass]="{'signin-login-btn': true, 'disabled-button': form.invalid}"/>
+              <input
+                type="submit"
+                value="Sign up"
+                [disabled]="form.invalid"
+                [ngClass]="{
+                  'signin-login-btn': true,
+                  'disabled-button': form.invalid
+                }"
+              />
             </ng-template>
-            
           </form>
         </div>
 
