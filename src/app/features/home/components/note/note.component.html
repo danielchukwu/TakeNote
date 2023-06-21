@@ -1,34 +1,38 @@
 <div class="main-content" *ngIf="notebook$ | async as notebook">
   <div class="note-content">
-
     <!-- Note Title -->
     <div>
       <div class="note-title" (click)="showTitleForm()" *ngIf="!editTitleMode">
         <h1 class="heading">{{ notebook.title }}</h1>
-        <app-display-svg [svgName]="'pen'" ></app-display-svg>
-        
+        <app-display-svg [svgName]="'pen'"></app-display-svg>
       </div>
     </div>
-    
+
     <div class="note-title" *ngIf="editTitleMode">
-      <app-quick-input-field 
-        [title]="notebook.title" 
+      <app-quick-input-field
+        [title]="notebook.title"
         styles="input-note-title"
-        [save]="updateTitle()" 
-        (closeInputField)="showTitleForm()">
+        [save]="updateTitle()"
+        (closeInputField)="showTitleForm()"
+      >
       </app-quick-input-field>
     </div>
-      
+
     <div class="about-note">
-      <div class="about-block" *ngIf="!editDescriptionMode" (click)="showDescriptionForm()">
+      <div
+        class="about-block"
+        *ngIf="!editDescriptionMode"
+        (click)="showDescriptionForm()"
+      >
         <p>{{ notebook.description }}</p>
       </div>
       <div *ngIf="editDescriptionMode">
-        <app-quick-input-field 
-          [title]="notebook.description" 
+        <app-quick-input-field
+          [title]="notebook.description"
           styles="input-note-description"
           [save]="updateDescription()"
-          (closeInputField)="showDescriptionForm()">
+          (closeInputField)="showDescriptionForm()"
+        >
         </app-quick-input-field>
       </div>
     </div>
@@ -40,51 +44,62 @@
         <!-- <app-display-svg [svgName]="'pen'" ></app-display-svg> -->
       </div>
       <div class="pill-note-count" *ngIf="notes">
-        <div class="text-block-10">{{notes.length}}</div>
+        <div class="text-block-10">{{ notes.length }}</div>
       </div>
     </div>
     <!-- List of Notes -->
     <div class="notes-list-wrapper">
       <div *ngFor="let note of notes">
         <!-- Note Card -->
-        <app-note-card [note]="note" (removeNoteId)="removeNotebook($event);" ></app-note-card>
+        <app-note-card
+          [note]="note"
+          (removeNoteId)="removeNotebook($event)"
+        ></app-note-card>
       </div>
     </div>
-
   </div>
   <div class="form-block w-form">
-
     <form id="email-form" name="email-form" #form class="form">
       <app-text-field (createNoteEvent)="createNote($event)"></app-text-field>
     </form>
-    
   </div>
 </div>
 
-
 <!-- Loader -->
 
-<div class="main-content" *ngIf="(notebook$ | async) === undefined && notes.length === 0">
+<div
+  class="main-content"
+  *ngIf="
+    (notebook$ | async) === undefined &&
+    showNotebookSkeleton &&
+    showNoteSkeleton
+  "
+>
   <div class="note-content">
-
     <!-- Note Title - Loader -->
-    <div class="note-header-loader">
-      <ngx-skeleton-loader count="1" appearance="line" [theme]="{ 
+    <div class="note-header-loader" *ngIf="showNotebookSkeleton">
+      <ngx-skeleton-loader
+        count="1"
+        appearance="line"
+        [theme]="{ 
         'height.px': 70,
         'background-color': 'rgba(0,0,0,.03)',
         'border-radius.px': 10,
-      }"></ngx-skeleton-loader>
-
+      }"
+      ></ngx-skeleton-loader>
     </div>
-    
-    
+
     <!-- Note Description - Loader -->
-    <div class="note-description-loader">
-      <ngx-skeleton-loader count="2" appearance="line" [theme]="{ 
+    <div class="note-description-loader" *ngIf="showNotebookSkeleton">
+      <ngx-skeleton-loader
+        count="2"
+        appearance="line"
+        [theme]="{ 
         'height.px': 16,
         'background-color': 'rgba(0,0,0,.03)',
         'border-radius.px': 10,
-      }"></ngx-skeleton-loader>
+      }"
+      ></ngx-skeleton-loader>
     </div>
 
     <!-- Note Section Title - Loader -->
@@ -100,20 +115,21 @@
 
     <!-- List of Notes -->
 
-    <div class="note-content-loader">
-      <ngx-skeleton-loader count="4" appearance="line" [theme]="{ 
+    <div class="note-content-loader" *ngIf="showNoteSkeleton">
+      <ngx-skeleton-loader
+        count="4"
+        appearance="line"
+        [theme]="{ 
         'height.px': 20,
         'background-color': 'rgba(0,0,0,.03)',
         'border-radius.px': 10,
-      }"></ngx-skeleton-loader>
+      }"
+      ></ngx-skeleton-loader>
     </div>
-
   </div>
   <div class="form-block w-form">
-
     <form id="email-form" name="email-form" class="form">
       <app-text-field></app-text-field>
     </form>
-    
   </div>
 </div>
