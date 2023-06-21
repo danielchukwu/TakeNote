@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&display=swap");
 
 body {
   margin: 0;
@@ -13,12 +13,27 @@ input {
   font-family: Poppins, sans-serif;
 }
 
-div { font-family: Poppins, sans-serif; }
-h1, h2, h3, h4, h5, h6, p { font-family: Poppins, sans-serif; }
+div {
+  font-family: Poppins, sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-family: Poppins, sans-serif;
+}
 
-
-.success-color { background-color: #2ECC71; color: #fff;}
-.error-color { background-color: #EF4444; color: #fff;}
+.success-color {
+  background-color: #2ecc71;
+  color: #fff;
+}
+.error-color {
+  background-color: #ef4444;
+  color: #fff;
+}
 
 a {
   text-decoration: none;
@@ -42,19 +57,21 @@ input:focus {
 }
 
 ::-webkit-scrollbar-thumb {
-  /* background-color: #888; */
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 5px; /* Adjust border radius */
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(0, 0, 0, .4); /* Adjust thumb color on hover */
+  background-color: rgba(0, 0, 0, 0.4); /* Adjust thumb color on hover */
 }
 
 /* Button */
-.app-button-1, .app-button-1-outline, .app-button-arrow, .app-button-round {
+.app-button-1,
+.app-button-1-outline,
+.app-button-arrow,
+.app-button-round {
   padding: 6px 40px;
-  background: rgba(0, 0, 0, .85);
+  background: rgba(0, 0, 0, 0.85);
   color: #fff;
   font-size: 14px;
   border-radius: 5px;
@@ -63,18 +80,30 @@ input:focus {
 
 .app-button-1-outline {
   background: transparent;
-  color:  rgba(0, 0, 0, .9);
+  color: rgba(0, 0, 0, 0.9);
 }
 
 .app-button-round {
   border-radius: 50px;
 }
 
-.app-button-1:hover, .app-button-arrow:hover, .app-button-round:hover {background: rgba(0, 0, 0, .95);}
-.app-button-1-outline:hover {background: rgba(0, 0, 0, .05);}
+.app-button-1:hover,
+.app-button-arrow:hover,
+.app-button-round:hover {
+  background: rgba(0, 0, 0, 0.95);
+}
+.app-button-1-outline:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
 
-.app-button-1:active, .app-button-arrow:active, .app-button-round:active {background: rgba(0, 0, 0, .85);}
-.app-button-1-outline:active {background: transparent;}
+.app-button-1:active,
+.app-button-arrow:active,
+.app-button-round:active {
+  background: rgba(0, 0, 0, 0.85);
+}
+.app-button-1-outline:active {
+  background: transparent;
+}
 
 .app-button-arrow {
   display: inline-block;
@@ -89,28 +118,55 @@ input:focus {
 }
 
 /* Svg */
-.svg-10 svg {width: 10px; height: 10px;}
-.svg-12 svg {width: 12px; height: 12px;}
-.svg-14 svg {width: 14px; height: 14px;}
-.svg-16 svg {width: 16px; height: 16px;}
-.svg-18 svg {width: 18px; height: 18px;}
-.svg-20 svg {width: 20px; height: 20px;}
-.svg-22 svg {width: 22px; height: 22px;}
-.svg-24 svg {width: 24px; height: 24px;}
-.svg-26 svg {width: 26px; height: 26px;}
+.svg-10 svg {
+  width: 10px;
+  height: 10px;
+}
+.svg-12 svg {
+  width: 12px;
+  height: 12px;
+}
+.svg-14 svg {
+  width: 14px;
+  height: 14px;
+}
+.svg-16 svg {
+  width: 16px;
+  height: 16px;
+}
+.svg-18 svg {
+  width: 18px;
+  height: 18px;
+}
+.svg-20 svg {
+  width: 20px;
+  height: 20px;
+}
+.svg-22 svg {
+  width: 22px;
+  height: 22px;
+}
+.svg-24 svg {
+  width: 24px;
+  height: 24px;
+}
+.svg-26 svg {
+  width: 26px;
+  height: 26px;
+}
 
 .card-svg-box {
-  padding: .5px 5px;
+  padding: 0.5px 5px;
   border-radius: 30%;
   cursor: pointer;
 }
 
 .card-svg-box:hover {
-  background-color: rgba(0, 0, 0, .1);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .card-svg-box:active {
-  background-color: rgba(0, 0, 0, .05);
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .pointer {
@@ -118,16 +174,16 @@ input:focus {
 }
 
 .svg path {
-  stroke: rgba(0, 0, 0, .4);
+  stroke: rgba(0, 0, 0, 0.4);
 }
 
 .svg-hoverd path {
-  stroke: rgba(0, 0, 0, .6);
+  stroke: rgba(0, 0, 0, 0.6);
   cursor: pointer;
 }
 
 .disabled-svg path {
-  stroke: rgba(0, 0, 0, .1);
+  stroke: rgba(0, 0, 0, 0.1);
 }
 
 .input-note-title,
@@ -135,15 +191,15 @@ input:focus {
   width: 100%;
 }
 
-.input-note-title input { 
-  width: 100%; 
+.input-note-title input {
+  width: 100%;
   font-size: 50px;
   font-weight: bold;
   box-sizing: border-box;
 }
 
-.input-note-header input { 
-  width: 100%; 
+.input-note-header input {
+  width: 100%;
   font-size: 28px;
   font-weight: 600;
 }
@@ -151,8 +207,8 @@ input:focus {
 .update-note-pill {
   padding: 5px 6px 5px 10px;
   display: inline-block;
-  margin-bottom: .2rem;
-  background-color: #2ECC71;
+  margin-bottom: 0.2rem;
+  background-color: #2ecc71;
   border-radius: 1rem;
   color: #fff;
   font-size: 14px;
@@ -196,7 +252,7 @@ input:focus {
 
 .checkbox-input--inputType-custom.w--redirected-checked {
   background-color: #3898ec;
-  background-image: url('https://d3e54v103j8qbb.cloudfront.net/static/custom-checkbox-checkmark.589d534424.svg');
+  background-image: url("https://d3e54v103j8qbb.cloudfront.net/static/custom-checkbox-checkmark.589d534424.svg");
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -247,13 +303,13 @@ input:focus {
   width: 50px;
   height: 50px;
   border-radius: 10%;
-  background-color: rgba(0, 0, 0, .25);
+  background-color: rgba(0, 0, 0, 0.25);
   cursor: pointer;
   overflow: hidden;
 }
 
 .avatar-container:hover {
-  background-color:  rgba(0, 0, 0, .3);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .avatar-container img {
@@ -264,6 +320,7 @@ input:focus {
 
 .avatar-container span {
   font-weight: 600;
+  text-transform: uppercase;
   color: #fff;
 }
 
@@ -291,11 +348,11 @@ input:focus {
 .icon-button {
   width: auto;
   height: 20px;
-  color: rgba(0, 0, 0, .8);
+  color: rgba(0, 0, 0, 0.8);
   text-align: center;
   border-radius: 10px;
   align-items: center;
-  padding: .9rem .8rem;
+  padding: 0.9rem 0.8rem;
   font-size: 14px;
   font-weight: 500;
   display: flex;
@@ -309,7 +366,7 @@ input:focus {
   text-align: center;
   border-radius: 10px;
   align-items: center;
-  padding: .9rem .8rem;
+  padding: 0.9rem 0.8rem;
   font-size: 14px;
   font-weight: 500;
   display: flex;
@@ -321,7 +378,7 @@ input:focus {
 }
 
 .icon-button:active {
-  background-color: rgba(0, 0, 0, .1);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .icon-button.sidebar-btn {
@@ -369,7 +426,7 @@ input:focus {
 .body.black-80 {
   height: 100vh;
   max-height: 100vh;
-  color: rgba(0, 0, 0, .8);
+  color: rgba(0, 0, 0, 0.8);
 }
 
 .btn-svg-16 {
@@ -379,7 +436,7 @@ input:focus {
 }
 
 .btn-svg-16.black-80 {
-  color: rgba(0, 0, 0, .8);
+  color: rgba(0, 0, 0, 0.8);
 }
 
 .text-block-2 {
@@ -416,7 +473,8 @@ input:focus {
   right: 0%;
 }
 
-.sidebar-text-overlay, .sidebar-text-overlay-selected {
+.sidebar-text-overlay,
+.sidebar-text-overlay-selected {
   position: absolute;
   top: 0;
   right: 0;
@@ -430,7 +488,7 @@ input:focus {
 }
 
 .link {
-  color: rgba(0, 0, 0, .8);
+  color: rgba(0, 0, 0, 0.8);
   text-decoration: none;
 }
 
@@ -477,7 +535,7 @@ input:focus {
 }
 
 .about-block {
-  color: rgba(0, 0, 0, .5);
+  color: rgba(0, 0, 0, 0.5);
   font-size: 16px;
   font-weight: 500;
   padding-left: 3.5px;
@@ -489,7 +547,7 @@ input:focus {
   width: 100%;
   font-size: 16px;
   font-weight: 500;
-  color: rgba(0, 0, 0, .5);
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .edit-pen {
@@ -500,11 +558,11 @@ input:focus {
 .edit-pen.black {
   width: 10px;
   height: 10px;
-  color: rgba(0, 0, 0, .5);
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .text-block-4 {
-  color: rgba(0, 0, 0, .8);
+  color: rgba(0, 0, 0, 0.8);
   font-size: 28px;
   font-weight: 600;
 }
@@ -519,11 +577,10 @@ input:focus {
   padding-left: 3.5px;
 }
 
-
 .button {
-  color: rgba(0, 0, 0, .5);
+  color: rgba(0, 0, 0, 0.5);
   cursor: none;
-  background-color: rgba(0, 0, 0, .1);
+  background-color: rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   padding: 2px 10px;
   font-size: 16px;
@@ -541,7 +598,7 @@ input:focus {
 
 .note-item {
   cursor: default;
-  background-color: rgba(0, 0, 0, .05);
+  background-color: rgba(0, 0, 0, 0.05);
   border-radius: 10px;
   justify-content: space-between;
   align-items: flex-start;
@@ -552,7 +609,7 @@ input:focus {
 }
 
 .note-item:hover {
-  background-color: rgba(0, 0, 0, .07);
+  background-color: rgba(0, 0, 0, 0.07);
 }
 
 .grid {
@@ -561,12 +618,12 @@ input:focus {
 }
 
 .edit-delete {
-  grid-column-gap: .6rem;
+  grid-column-gap: 0.6rem;
   display: flex;
 }
 
 .edit-delete-wrapper {
-  grid-column-gap: .6rem;
+  grid-column-gap: 0.6rem;
   display: flex;
   justify-content: flex-end;
   padding-left: 15px;
@@ -607,7 +664,11 @@ input:focus {
 
 .form-block {
   width: 100%;
-  background: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0)
+  );
   margin-bottom: 0;
   padding: 1rem 6rem 0 28rem;
   display: block;
@@ -638,7 +699,7 @@ input:focus {
 
 .add.create-note-btn {
   height: 50px;
-  background-color: rgba(0, 0, 0, .8);
+  background-color: rgba(0, 0, 0, 0.8);
   border-radius: 7px;
   padding-left: 20px;
   padding-right: 20px;
@@ -649,12 +710,12 @@ input:focus {
 }
 
 .add.create-note-btn:active {
-  background-color: rgba(0, 0, 0, .8);
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .add-pro-todo.create-note-btn {
   height: 50px;
-  background-color: rgba(22, 121, 247, .9);
+  background-color: rgba(22, 121, 247, 0.9);
   border-radius: 7px;
   padding-left: 20px;
   padding-right: 20px;
@@ -665,13 +726,13 @@ input:focus {
 }
 
 .add-pro-todo.create-note-btn:active {
-  background-color: rgba(22, 121, 247, .9);
+  background-color: rgba(22, 121, 247, 0.9);
 }
 
 .text-field {
   height: 50px;
-  background-color: rgba(0, 0, 0, .1);
-  border: 1px solid rgba(0, 0, 0, .2);
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   flex: 0 auto;
   padding-left: 25px;
@@ -707,7 +768,7 @@ input:focus {
 }
 
 .sp-user-card {
-  padding: 0.5rem .7rem 0;
+  padding: 0.5rem 0.7rem 0;
   display: flex;
   align-items: center;
 }
@@ -717,7 +778,6 @@ input:focus {
   padding: 0rem 5rem 10rem 27rem;
   box-sizing: border-box;
 }
-
 
 .top-nav-bar {
   display: none;
@@ -732,7 +792,6 @@ input:focus {
 .section {
   height: 100vh;
 }
-
 
 .section-2 {
   padding-top: 5rem;
@@ -762,7 +821,7 @@ input:focus {
 
 .signup-google {
   background-color: #fff;
-  border: 1px solid rgba(0, 0, 0, .2);
+  border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 20px;
   justify-content: center;
   align-items: center;
@@ -836,7 +895,6 @@ input:focus {
   display: none;
 }
 
-
 .title {
   width: 100%;
   align-items: center;
@@ -846,14 +904,14 @@ input:focus {
 
 .add-new-note {
   width: auto;
-  color: rgba(0, 0, 0, .8);
+  color: rgba(0, 0, 0, 0.8);
   text-align: center;
   background-color: rgba(0, 0, 0, 0);
-  border: 1px solid rgba(0, 0, 0, .2);
+  border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   align-items: center;
   padding: 0.7rem 0.8rem;
-  margin: .5rem .7rem 0;
+  margin: 0.5rem 0.7rem 0;
   font-size: 16px;
   font-weight: 700;
   display: flex;
@@ -897,14 +955,14 @@ input:focus {
 }
 
 .pill-note-count {
-  background-color: rgba(0, 0, 0, .05);
+  background-color: rgba(0, 0, 0, 0.05);
   border-radius: 10px;
   padding: 3px 10px;
 }
 
 .text-block-10 {
   float: none;
-  color: rgba(0, 0, 0, .5);
+  color: rgba(0, 0, 0, 0.5);
   white-space: nowrap;
   font-size: 14px;
   font-weight: 600;
@@ -959,7 +1017,7 @@ input:focus {
   }
 
   .signup-google:hover {
-    background-color: rgba(0, 0, 0, .05);
+    background-color: rgba(0, 0, 0, 0.05);
   }
 
   .signup-google:active {
@@ -1069,7 +1127,8 @@ input:focus {
     font-size: 14px;
   }
 
-  .image-3, .waste-bin {
+  .image-3,
+  .waste-bin {
     width: 16px;
     height: 16px;
   }
@@ -1110,10 +1169,10 @@ input:focus {
     height: 50px;
     padding: 0 20px;
     box-sizing: border-box;
-    background: rgba(0, 0, 0, .9);
+    background: rgba(0, 0, 0, 0.9);
     width: 100%;
+    z-index: 1;
   }
-  
 
   .text-block-6 {
     color: #fff;
@@ -1121,7 +1180,7 @@ input:focus {
   }
 
   .signup-google {
-    border: 1px solid rgba(0, 0, 0, .2);
+    border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 20px;
     justify-content: center;
     align-items: center;
@@ -1152,11 +1211,11 @@ input:focus {
     z-index: 2;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, .5);
+    background-color: rgba(0, 0, 0, 0.5);
     display: block;
     position: fixed;
   }
-  
+
   .display-none-mobile {
     display: none;
   }
@@ -1180,7 +1239,6 @@ input:focus {
 }
 
 @media screen and (max-width: 767px) {
-
   .sp-scroll-wrapper {
     overflow-x: hidden;
     padding-bottom: 20px;
@@ -1192,9 +1250,9 @@ input:focus {
 
   .about-note {
     margin-top: 1.5rem;
-  }  
+  }
 
-  .input-note-title input { 
+  .input-note-title input {
     font-size: 40px;
   }
 
@@ -1246,7 +1304,7 @@ input:focus {
     font-size: 30px;
   }
 
-  .input-note-title input { 
+  .input-note-title input {
     font-size: 30px;
   }
 
@@ -1271,7 +1329,8 @@ input:focus {
     font-weight: 400;
   }
 
-  .image-3, .waste-bin {
+  .image-3,
+  .waste-bin {
     width: 14px;
     height: 14px;
   }
@@ -1299,13 +1358,13 @@ input:focus {
     box-sizing: border-box;
   }
 
-  .image-5, .image-6 {
+  .image-5,
+  .image-6 {
     width: 16px;
     height: 16px;
   }
 
   .main-content {
-
     margin-top: 0;
   }
 
