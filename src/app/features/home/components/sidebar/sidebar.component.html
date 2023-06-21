@@ -2,36 +2,53 @@
   <div>
     <div class="sp-user-card">
       <div class="avatar-container" (click)="updateAvatar()">
-        <!-- <img *ngIf="user.avatar " src="assets/passport-3.jpg" loading="lazy" class="image"> -->
-        <img *ngIf="user.avatar" src={{user.avatar}} loading="lazy" class="image">
-        <span *ngIf="!user.avatar">{{user.name | slice: 0:1}}</span>
+        <!-- <img  src="assets/passport-3.jpg" loading="lazy" class="image"> -->
+        <img
+          *ngIf="user.avatar"
+          src="{{ user.avatar }}"
+          loading="lazy"
+          class="image"
+        />
+        <span *ngIf="!user.avatar">{{ user.name | slice : 0 : 1 }}</span>
       </div>
       <div class="div-block">
         <div class="text-block text-14">Hello there,</div>
-        <div class="text-block text-25">{{user.name | capitalize }}</div>
+        <div class="text-block text-25">{{ user.name | capitalize }}</div>
       </div>
     </div>
     <div class="add-new-note t-mar-20 app-border" (click)="createNoteBook()">
-      <img src="assets/add-sign.svg" loading="lazy" alt="add note icon" class="btn-svg-16 black-80">
+      <img
+        src="assets/add-sign.svg"
+        loading="lazy"
+        alt="add note icon"
+        class="btn-svg-16 black-80"
+      />
       <div class="text-block-2">New Notebook</div>
     </div>
     <div class="sp-scroll-wrapper">
-      
-      <div class="sidebar-notebook-loader" *ngIf="notebooks.length === 0">
-        <ngx-skeleton-loader count="9" appearance="line" [theme]="{ 
+      <div class="sidebar-notebook-loader" *ngIf="showNotebookSkeleton">
+        <ngx-skeleton-loader
+          count="9"
+          appearance="line"
+          [theme]="{ 
           'height.px': 45,
           'background-color': 'rgba(0,0,0,.03)',
           'border-radius.px': 10,
-        }"></ngx-skeleton-loader>
+        }"
+        ></ngx-skeleton-loader>
       </div>
       <div *ngFor="let notebook of notebooks">
-        <app-sidebar-note-card [notebook]="notebook" [isSelected]='selectedNotebook?.id === notebook.id' (removeNotebookId)="removeNotebook($event)"></app-sidebar-note-card>
+        <app-sidebar-note-card
+          [notebook]="notebook"
+          [isSelected]="selectedNotebook?.id === notebook.id"
+          (removeNotebookId)="removeNotebook($event)"
+        ></app-sidebar-note-card>
       </div>
-
     </div>
     <div class="sidebar-fixed-bottom">
-      <a [ngStyle]="{'cursor': 'pointer'}" class="link" (click)="logout()">Logout</a>
+      <a [ngStyle]="{ cursor: 'pointer' }" class="link" (click)="logout()"
+        >Logout</a
+      >
     </div>
-
   </div>
 </div>
