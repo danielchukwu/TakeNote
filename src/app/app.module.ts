@@ -13,10 +13,14 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { UserService } from './core/auth/user.service';
 
+import {
+  SocialLoginModule,
+  SocialAuthServiceConfig,
+  GoogleLoginProvider,
+} from '@abacritt/angularx-social-login';
+
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -26,12 +30,28 @@ import { UserService } from './core/auth/user.service';
     SharedModule,
     BrowserAnimationsModule,
     RouterModule,
+    SocialLoginModule,
   ],
   providers: [
     AuthService,
     UserService,
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider('clientId'),
+          },
+        ],
+        onError: (err) => {
+          console.error(err);
+        },
+      } as SocialAuthServiceConfig,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
