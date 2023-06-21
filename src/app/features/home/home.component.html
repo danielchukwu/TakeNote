@@ -1,35 +1,49 @@
 <!-- Show App home screen if user is authenticated -->
 <section class="section wf-section" *ngIf="isAuthenticated()">
   <div class="main">
-
     <!-- Mobile Only - Top Navbar -->
     <div class="top-nav-bar">
       <!-- Menu Icon -->
-      <div (click)="toggleSidePanel()">
-        <img src="assets/menu-fff.svg" loading="lazy" alt="menu" class="image-6">
+      <div (click)="toggleSidePanel()" class="pointer">
+        <img
+          src="assets/menu-fff.svg"
+          loading="lazy"
+          alt="menu"
+          class="image-6"
+        />
       </div>
       <div>
-        <div class="text-block-6">{{headerTitle}}</div>
+        <div class="text-block-6">{{ headerTitle }}</div>
       </div>
       <!-- Add Note Icon -->
       <div (click)="toggleSidePanel()">
-        <img src="assets/add-fff.svg" loading="lazy" width="20" height="20" alt="add note icon" class="image-5">
+        <!-- <img src="assets/add-fff.svg" loading="lazy" width="20" height="20" alt="add note icon" class="image-5"> -->
       </div>
     </div>
 
     <!-- Mobile Only - Background Overlay Grey -->
-    <div class="background-overlay" (click)="toggleSidePanel()" *ngIf="showSidePanel">
-      <img src="assets/add-fff.svg" loading="lazy" width="25" height="25" alt="cancel" class="overlay-cancel pointer">
+    <div
+      class="background-overlay"
+      (click)="toggleSidePanel()"
+      *ngIf="showSidePanel"
+    >
+      <img
+        src="assets/add-fff.svg"
+        loading="lazy"
+        width="25"
+        height="25"
+        alt="cancel"
+        class="overlay-cancel pointer"
+      />
     </div>
 
     <!-- SIDEBAR -->
-    <div [ngClass]="{'display-none-mobile': !showSidePanel}">
+    <div [ngClass]="{ 'display-none-mobile': !showSidePanel }">
       <app-sidebar></app-sidebar>
     </div>
 
     <!-- NOTE - Main Content -->
     <router-outlet></router-outlet>
-
   </div>
 </section>
 
