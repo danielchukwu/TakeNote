@@ -39,7 +39,6 @@ COPY . .
 
 RUN npm run build --prod
 
-
 # Server stage
 FROM nginx:latest-alpine
 
