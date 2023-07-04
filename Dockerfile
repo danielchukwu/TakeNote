@@ -40,7 +40,7 @@ COPY . .
 RUN npm run build --prod
 
 # Server stage
-FROM nginx:latest-alpine
+FROM nginx:alpine
 
 COPY --from=builder /usr/src/app/dist/takenote-ft/ /usr/share/nginx/html
 
